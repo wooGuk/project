@@ -7,8 +7,8 @@
 	#projectListTable tr { color:blue; }
 </style>
 <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-<link href="application/bootstrap-2.3.2/docs/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet"/>
-<link href="application/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
+<link href="application/js/bootstrap-2.3.2/docs/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet"/>
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
  <style type="text/css">
       body {
         padding-top: 40px;
@@ -29,23 +29,23 @@
    </style>
 
 <link rel="stylesheet" href="application/js/common/jquery-ui.css" />
-<link href="application/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
 <script src="assets/js/jquery.js"></script>
 <script src="application/js/common/jquery-2.0.2.min.js"></script>
 <script src="application/js/common/jquery-ui.min.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-transition.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-alert.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-modal.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-dropdown.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-scrollspy.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-tab.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-tooltip.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-popover.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-button.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-collapse.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-carousel.js"></script>
-<script src="application/bootstrap-2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-transition.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-alert.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-modal.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-dropdown.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-scrollspy.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tab.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tooltip.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-popover.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-button.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-collapse.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-carousel.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
 <script>
 
 $(function(){
