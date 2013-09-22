@@ -30,7 +30,7 @@
 <script src="application/js/shape.js"></script>
 <script src="application/js/canvas.js"></script>
 <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
-<script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
+<script src="http://203.253.20.234:8005/socket.io/socket.io.js"></script>
 
 
 <!-- 부트스트랩 -->
@@ -142,7 +142,7 @@ var chatStory = [];
 var pop=0;
 var push=0;
 
-var socket = io.connect("http://203.253.20.235:8005");
+var socket = io.connect("http://203.253.20.234:8005");
 
 socket.on("message", function (data) {
 	message_list.innerHTML = message_list.innerHTML + data.user_name+" :" + data.message+"<br />"  ;

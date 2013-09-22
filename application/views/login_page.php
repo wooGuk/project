@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-      <link href="./application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -41,7 +41,7 @@
       }
 
     </style>
-    <link href="/application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -57,16 +57,15 @@
 </head>
 <body>
 
-<div class="container">
-	 <form class="form-signin">
-	<h2 class="form-signin-heading">Login Page</h2>
-	<input type="text" id="email" placeholder="이메일주소"/>
-	<input type="text" id="passwd" placeholder="비밀번호"/>
-	<button id="login" class="btn btn-large btn-primary">로그인</button>
-</div>
+  <div class="container">
 
-</body>
-
+  	<form class="form-signin">
+    	<h2 class="form-signin-heading">Login Page</h2>
+    	<input type="text" class="input-block-level" id="email" placeholder="이메일주소"/>
+    	<input type="text" class="input-block-level" id="passwd" placeholder="비밀번호"/>
+    	<button type="button" id="login" class="btn btn-large btn-primary">로그인</button>
+    </form>
+  </div>
 
 <script src="application/js/common/jquery-2.0.2.min.js"></script>
 <script>
@@ -85,4 +84,5 @@ $(function(){
 	});
 });
 </script>
+</body>
 </html>

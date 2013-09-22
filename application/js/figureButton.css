@@ -1,691 +1,553 @@
 .btn {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url('../img/s.png') no-repeat;
+background: transparent url(../img/s.png) no-repeat;
 }
 .btn:active {
 background: transparent url(../img/sp.png) no-repeat;
 }
 .btndraw {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/draw.png) no-repeat;
+background: transparent url(../img/draw.png) no-repeat;
 }
 .btndraw:active {
-background: transparent url(./application/img/drawp.png) no-repeat;
+background: transparent url(../img/drawp.png) no-repeat;
 }
 .btnLine {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/line.png) no-repeat;
+background: transparent url(../img/line.png) no-repeat;
 }
 .btnLine:active {
-background: transparent url(./application/img/linep.png) no-repeat;
+background: transparent url(../img/linep.png) no-repeat;
 }
 .basic {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/basicRect.png) no-repeat;
+background: transparent url(../img/basicRect.png) no-repeat;
 }
 .basic:active {
-background: transparent url(./application/img/linep.png) no-repeat;
+background: transparent url(../img/basicRect.png) no-repeat;
 }
 .figureRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/rect.png) no-repeat;
+background: transparent url(../img/rect.png) no-repeat;
 }
 .figureRect:active {
-background: transparent url(./application/img/pushrect.png) no-repeat;
+background: transparent url(../img/pushrect.png) no-repeat;
 }
 .roundRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/roundRect.png) no-repeat;
+background: transparent url(../img/roundRect.png) no-repeat;
 }
 .roundRect:active {
-background: transparent url(./application/img/pushRound.png) no-repeat;
+background: transparent url(../img/pushRound.png) no-repeat;
 }
 .oneCutRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/onecutRect.png) no-repeat;
+background: transparent url(../img/onecutRect.png) no-repeat;
 }
 .oneCutRect:active {
-background: transparent url(./application/img/pushonecut.png) no-repeat;
+background: transparent url(../img/pushonecut.png) no-repeat;
 }
 .twoCutRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/twocutRect.png) no-repeat;
+background: transparent url(../img/twocutRect.png) no-repeat;
 }
 .twoCutRect:active {
-background: transparent url(./application/img/pushtwocut.png) no-repeat;
+background: transparent url(../img/pushtwocut.png) no-repeat;
 }
 .counterCutRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/countercutRect.png) no-repeat;
+background: transparent url(../img/countercutRect.png) no-repeat;
 }
 .counterCutRect:active {
-background: transparent url(./application/img/pushcountercut.png) no-repeat;
+background: transparent url(../img/pushcountercut.png) no-repeat;
 }
 .oneRoundCutRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/oncutroundRect.png) no-repeat;
+background: transparent url(../img/oncutroundRect.png) no-repeat;
 }
 .oneRoundCutRect:active {
-background: transparent url(./application/img/pushoncutround.png) no-repeat;
+background: transparent url(../img/pushoncutround.png) no-repeat;
 }
 .oneRoundRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/oneRoundRect.png) no-repeat;
+background: transparent url(../img/oneRoundRect.png) no-repeat;
 }
 .oneRoundRect:active {
-background: transparent url(./application/img/pushonecut.png) no-repeat;
+background: transparent url(../img/pushonecut.png) no-repeat;
 }
 .bothRoundRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/bothRoundRect.png) no-repeat;
+background: transparent url(../img/bothRoundRect.png) no-repeat;
 }
 .bothRoundRect:active {
-background: transparent url(./application/img/pushbothRoundRect.png) no-repeat;
+background: transparent url(../img/pushbothRoundRect.png) no-repeat;
 }
 .counterRoundRect {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/counetRoundRect.png) no-repeat;
+background: transparent url(../img/counetRoundRect.png) no-repeat;
 }
 .counterRoundRect:active {
-background: transparent url(./application/img/pushcounetRoundRect.png) no-repeat;
+background: transparent url(../img/pushcounetRoundRect.png) no-repeat;
 }
 .triangle {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/triangle.png) no-repeat;
+background: transparent url(../img/triangle.png) no-repeat;
 }
 .triangle:active {
-background: transparent url(./application/img/pushtriangle.png) no-repeat;
+background: transparent url(../img/pushtriangle.png) no-repeat;
 }
 .reversetriangle {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/reversetriangle.png) no-repeat;
+background: transparent url(../img/reversetriangle.png) no-repeat;
 }
 .reversetriangle:active {
-background: transparent url(./application/img/pushreversetriangle.png) no-repeat;
+background: transparent url(../img/pushreversetriangle.png) no-repeat;
 }
 .righttriangle {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/righttriangle.png) no-repeat;
+background: transparent url(../img/righttriangle.png) no-repeat;
 }
 .righttriangle:active {
-background: transparent url(./application/img/pushrighttriangle.png) no-repeat;
+background: transparent url(../img/pushrighttriangle.png) no-repeat;
 }
 .trapezoid {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/trapezoid.png) no-repeat;
+background: transparent url(../img/trapezoid.png) no-repeat;
 }
 .trapezoid:active {
-background: transparent url(./application/img/pushtrapezoid.png) no-repeat;
+background: transparent url(../img/pushtrapezoid.png) no-repeat;
 }
 .diamond {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/diamond.png) no-repeat;
+background: transparent url(../img/diamond.png) no-repeat;
 }
 .diamond:active {
-background: transparent url(./application/img/pushdiamond.png) no-repeat;
+background: transparent url(../img/pushdiamond.png) no-repeat;
 }
 .five {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/five.png) no-repeat;
+background: transparent url(../img/five.png) no-repeat;
 }
 .five:active {
-background: transparent url(./application/img/pushfive.png) no-repeat;
+background: transparent url(../img/pushfive.png) no-repeat;
 }
 .six {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/six.png) no-repeat;
+background: transparent url(../img/six.png) no-repeat;
 }
 .six:active {
-background: transparent url(./application/img/pushsix.png) no-repeat;
+background: transparent url(../img/pushsix.png) no-repeat;
 }
 .seven {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/seven.png) no-repeat;
+background: transparent url(../img/seven.png) no-repeat;
 }
 .seven:active {
-background: transparent url(./application/img/pushseven.png) no-repeat;
+background: transparent url(../img/pushseven.png) no-repeat;
 }
 .eight {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/eight.png) no-repeat;
+background: transparent url(../img/eight.png) no-repeat;
 }
 .eight:active {
-background: transparent url(./application/img/pusheight.png) no-repeat;
+background: transparent url(../img/pusheight.png) no-repeat;
 }
 .ten {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/ten.png) no-repeat;
+background: transparent url(../img/ten.png) no-repeat;
 }
 .ten:active {
-background: transparent url(./application/img/pushten.png) no-repeat;
+background: transparent url(../img/pushten.png) no-repeat;
 }
 .twelve {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/twelve.png) no-repeat;
+background: transparent url(../img/twelve.png) no-repeat;
 }
 .twelve:active {
-background: transparent url(./application/img/pushtwelve.png) no-repeat;
+background: transparent url(../img/pushtwelve.png) no-repeat;
 }
 .circle {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/circle.png) no-repeat;
+background: transparent url(../img/circle.png) no-repeat;
 }
 .circle:active {
-background: transparent url(./application/img/pushcircle.png) no-repeat;
+background: transparent url(../img/pushcircle.png) no-repeat;
 }
 .leftarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/leftarrow.png) no-repeat;
+background: transparent url(../img/leftarrow.png) no-repeat;
 }
 .leftarrow:active {
-background: transparent url(./application/img/pushleftarrow.png) no-repeat;
+background: transparent url(../img/pushleftarrow.png) no-repeat;
 }
 .rightarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/rightarrow.png) no-repeat;
+background: transparent url(../img/rightarrow.png) no-repeat;
 }
 .rightarrow:active {
-background: transparent url(./application/img/pushrightarrow.png) no-repeat;
+background: transparent url(../img/pushrightarrow.png) no-repeat;
 }
 .uparrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/uparrow.png) no-repeat;
+background: transparent url(../img/uparrow.png) no-repeat;
 }
 .uparrow:active {
-background: transparent url(./application/img/pushuparrow.png) no-repeat;
+background: transparent url(../img/pushuparrow.png) no-repeat;
 }
 .downarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/downarrow.png) no-repeat;
+background: transparent url(../img/downarrow.png) no-repeat;
 }
 .downarrow:active {
-background: transparent url(./application/img/pushdownarrow.png) no-repeat;
+background: transparent url(../img/pushdownarrow.png) no-repeat;
 }
 .botharrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/botharrow.png) no-repeat;
+background: transparent url(../img/botharrow.png) no-repeat;
 }
 .botharrow:active {
-background: transparent url(./application/img/pushbotharrow.png) no-repeat;
+background: transparent url(../img/pushbotharrow.png) no-repeat;
 }
 .updownarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/updownarrow.png) no-repeat;
+background: transparent url(../img/updownarrow.png) no-repeat;
 }
 .updownarrow:active {
-background: transparent url(./application/img/pushupdownarrow.png) no-repeat;
+background: transparent url(../img/pushupdownarrow.png) no-repeat;
 }
 
 .crossarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/crossarrow.png) no-repeat;
+background: transparent url(../img/crossarrow.png) no-repeat;
 }
 .crossarrow:active {
-background: transparent url(./application/img/pushcrossarrow.png) no-repeat;
+background: transparent url(../img/pushcrossarrow.png) no-repeat;
 }
 .threearrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/threearrow.png) no-repeat;
+background: transparent url(../img/threearrow.png) no-repeat;
 }
 .threearrow:active {
-background: transparent url(./application/img/pushthreearrow.png) no-repeat;
+background: transparent url(../img/pushthreearrow.png) no-repeat;
 }
 .rightturnarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/rightturnarrow.png) no-repeat;
+background: transparent url(../img/rightturnarrow.png) no-repeat;
 }
 .rightturnarrow:active {
-background: transparent url(./application/img/pushrightturnarrow.png) no-repeat;
+background: transparent url(../img/pushrightturnarrow.png) no-repeat;
 }
 .uarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/uarrow.png) no-repeat;
+background: transparent url(../img/uarrow.png) no-repeat;
 }
 .uarrow:active {
-background: transparent url(./application/img/pushuarrow.png) no-repeat;
+background: transparent url(../img/pushuarrow.png) no-repeat;
 }
 .leftuparrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/leftuparrow.png) no-repeat;
+background: transparent url(../img/leftuparrow.png) no-repeat;
 }
 .leftuparrow:active {
-background: transparent url(./application/img/pushleftuparrow.png) no-repeat;
+background: transparent url(../img/pushleftuparrow.png) no-repeat;
 }
 .upfarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/upfarrow.png) no-repeat;
+background: transparent url(../img/upfarrow.png) no-repeat;
 }
 .upfarrow:active {
-background: transparent url(./application/img/pushupfarrow.png) no-repeat;
+background: transparent url(../img/pushupfarrow.png) no-repeat;
 }
 .rightcurvearrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/rightcurvearrow.png) no-repeat;
+background: transparent url(../img/rightcurvearrow.png) no-repeat;
 }
 .rightcurvearrow:active {
-background: transparent url(./application/img/pushrightcurvearrow.png) no-repeat;
+background: transparent url(../img/pushrightcurvearrow.png) no-repeat;
 }
 .leftcurvearrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/leftcurvearrow.png) no-repeat;
+background: transparent url(../img/leftcurvearrow.png) no-repeat;
 }
 .leftcurvearrow:active {
 background: transparent url(img/pushleftcurvearrow.png) no-repeat;
 }
 .rightexarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/rightexarrow.png) no-repeat;
+background: transparent url(../img/rightexarrow.png) no-repeat;
 }
 .rightexarrow:active {
-background: transparent url(./application/img/pushrightexarrow.png) no-repeat;
+background: transparent url(../img/pushrightexarrow.png) no-repeat;
 }
 .leftrightexarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/leftrightexarrow.png) no-repeat;
+background: transparent url(../img/leftrightexarrow.png) no-repeat;
 }
 .leftrightexarrow:active {
-background: transparent url(./application/img/pushleftrightexarrow.png) no-repeat;
+background: transparent url(../img/pushleftrightexarrow.png) no-repeat;
 }
 .fourexarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/fourexarrow.png) no-repeat;
+background: transparent url(../img/fourexarrow.png) no-repeat;
 }
 .fourexarrow:active {
-background: transparent url(./application/img/pushfourexarrow.png) no-repeat;
+background: transparent url(../img/pushfourexarrow.png) no-repeat;
 }
 .flowbasicarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/basicflow.png) no-repeat;
+background: transparent url(../img/basicflow.png) no-repeat;
 }
 .flowbasicarrow:active {
-background: transparent url(./application/img/pushbothflow.png) no-repeat;
+background: transparent url(../img/pushbothflow.png) no-repeat;
 }
 .bothflowarrow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/bothflow.png) no-repeat;
+background: transparent url(../img/bothflow.png) no-repeat;
 }
 .bothflowarrow:active {
-background: transparent url(./application/img/pushbothflow.png) no-repeat;
+background: transparent url(../img/pushbothflow.png) no-repeat;
 }
 .saveflow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/saveflow.png) no-repeat;
+background: transparent url(../img/saveflow.png) no-repeat;
 }
 .saveflow:active {
-background: transparent url(./application/img/pushsaveflow.png) no-repeat;
+background: transparent url(../img/pushsaveflow.png) no-repeat;
 }
 .finalflow {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/finalflow.png) no-repeat;
+background: transparent url(../img/finalflow.png) no-repeat;
 }
 .finalflow:active {
-background: transparent url(./application/img/pushfinalflow.png) no-repeat;
+background: transparent url(../img/pushfinalflow.png) no-repeat;
 }
 .handflow1 {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/handflow1.png) no-repeat;
+background: transparent url(../img/handflow1.png) no-repeat;
 }
 .handflow1:active {
-background: transparent url(./application/img/pushhandflow1.png) no-repeat;
+background: transparent url(../img/pushhandflow1.png) no-repeat;
 }
 .handflow2 {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/handflow2.png) no-repeat;
+background: transparent url(../img/handflow2.png) no-repeat;
 }
 .handflow2:active {
-background: transparent url(./application/img/pushhandflow2.png) no-repeat;
+background: transparent url(../img/pushhandflow2.png) no-repeat;
 }
 .chartcard {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/chartcard.png) no-repeat;
+background: transparent url(../img/chartcard.png) no-repeat;
 }
 .chartcard:active {
-background: transparent url(./application/img/pushchartcard.png) no-repeat;
+background: transparent url(../img/pushchartcard.png) no-repeat;
 }
 .charttotal {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/charttotal.png) no-repeat;
+background: transparent url(../img/charttotal.png) no-repeat;
 }
 .charttotal:active {
-background: transparent url(./application/img/pushcharttotal.png) no-repeat;
+background: transparent url(../img/pushcharttotal.png) no-repeat;
 }
 .chartor {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/or.png) no-repeat;
+background: transparent url(../img/or.png) no-repeat;
 }
 .chartor:active {
-background: transparent url(./application/img/pushor.png) no-repeat;
+background: transparent url(../img/pushor.png) no-repeat;
 }
 .dataarray {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/dataarray.png) no-repeat;
+background: transparent url(../img/dataarray.png) no-repeat;
 }
 .dataarray:active {
-background: transparent url(./application/img/pushdataarray.png) no-repeat;
+background: transparent url(../img/pushdataarray.png) no-repeat;
 }
 .chartarray {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/chartarray.png) no-repeat;
+background: transparent url(../img/chartarray.png) no-repeat;
 }
 .chartarray:active {
-background: transparent url(./application/img/pushchartarray.png) no-repeat;
+background: transparent url(../img/pushchartarray.png) no-repeat;
 }
 .saveddata {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/saveddata.png) no-repeat;
+background: transparent url(../img/saveddata.png) no-repeat;
 }
 .saveddata:active {
-background: transparent url(./application/img/pushsaveddata.png) no-repeat;
+background: transparent url(../img/pushsaveddata.png) no-repeat;
 }
 .delay {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/delay.png) no-repeat;
+background: transparent url(../img/delay.png) no-repeat;
 }
 .delay:active {
-background: transparent url(./application/img/pushdelay.png) no-repeat;
+background: transparent url(../img/pushdelay.png) no-repeat;
 }
 .disk {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/disk.png) no-repeat;
+background: transparent url(../img/disk.png) no-repeat;
 }
 .disk:active {
-background: transparent url(./application/img/pushdisk.png) no-repeat;
+background: transparent url(../img/pushdisk.png) no-repeat;
 }
 .directacces {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/directacces.png) no-repeat;
+background: transparent url(../img/directacces.png) no-repeat;
 }
 .directacces:active {
-background: transparent url(./application/img/pushdirectacces.png) no-repeat;
+background: transparent url(../img/pushdirectacces.png) no-repeat;
 }
 .check {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/check.png) no-repeat;
+background: transparent url(../img/check.png) no-repeat;
 }
 .check:active {
-background: transparent url(./application/img/pushcheck.png) no-repeat;
+background: transparent url(../img/pushcheck.png) no-repeat;
 }
 .heart {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/heart.png) no-repeat;
+background: transparent url(../img/heart.png) no-repeat;
 }
 .heart:active {
-background: transparent url(./application/img/pushheart.png) no-repeat;
+background: transparent url(../img/pushheart.png) no-repeat;
 }
 .lightening {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/lightening.png) no-repeat;
+background: transparent url(../img/lightening.png) no-repeat;
 }
 .lightening:active {
-background: transparent url(./application/img/pushlightening.png) no-repeat;
+background: transparent url(../img/pushlightening.png) no-repeat;
 }
 .cloud {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/cloud.png) no-repeat;
+background: transparent url(../img/cloud.png) no-repeat;
 }
 .cloud:active {
-background: transparent url(./application/img/pushcloud.png) no-repeat;
+background: transparent url(../img/pushcloud.png) no-repeat;
 }
 .plus {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/plus.png) no-repeat;
+background: transparent url(../img/plus.png) no-repeat;
 }
 .plus:active {
-background: transparent url(./application/img/pushplus.png) no-repeat;
+background: transparent url(../img/pushplus.png) no-repeat;
 }
 .minus {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/minus.png) no-repeat;
+background: transparent url(../img/minus.png) no-repeat;
 }
 .minus:active {
-background: transparent url(./application/img/pushminus.png) no-repeat;
+background: transparent url(../img/pushminus.png) no-repeat;
 }
 .multiple {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/multiple.png) no-repeat;
+background: transparent url(../img/multiple.png) no-repeat;
 }
 .multiple:active {
-background: transparent url(./application/img/pushmultiple.png) no-repeat;
+background: transparent url(../img/pushmultiple.png) no-repeat;
 }
 .division {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/division.png) no-repeat;
+background: transparent url(../img/division.png) no-repeat;
 }
 .division:active {
-background: transparent url(./application/img/pushdivision.png) no-repeat;
+background: transparent url(../img/pushdivision.png) no-repeat;
 }
 .equal {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/equal.png) no-repeat;
+background: transparent url(../img/equal.png) no-repeat;
 }
 .equal:active {
-background: transparent url(./application/img/pushequal.png) no-repeat;
+background: transparent url(../img/pushequal.png) no-repeat;
 }
 .notequal {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/notequal.png) no-repeat;
+background: transparent url(../img/notequal.png) no-repeat;
 }
 .notequal:active {
-background: transparent url(./application/img/pushnotequal.png) no-repeat;
+background: transparent url(../img/pushnotequal.png) no-repeat;
 }
 .yes {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/yes.png) no-repeat;
+background: transparent url(../img/yes.png) no-repeat;
 }
 .yes:active {
-background: transparent url(./application/img/pushyes.png) no-repeat;
+background: transparent url(../img/pushyes.png) no-repeat;
 }
 .no {
-text-indent: -9999px;
-display: inline;
 width: 50px; /* 버튼 넓이 */
 height: 30px; /* 버튼 높이 */
-background: transparent url(./application/img/no.png) no-repeat;
+background: transparent url(../img/no.png) no-repeat;
 }
 .no:active {
-background: transparent url(./application/img/pushno.png) no-repeat;
+background: transparent url(../img/pushno.png) no-repeat;
 }

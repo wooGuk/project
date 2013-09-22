@@ -749,9 +749,9 @@ $(document).keydown(function(e){
 </script>
 </head>
 <body>
-	<div id="btnGroup" style="min-width:700px;height:30px;background-color:#87CEEB;">
-		<span><a type="button" class="btn" onclick="setShape('select');"></a></span>
-		<span><a type="button" class="btndraw"></a></span>
+	<div id="btnGroup" style="min-width:700px; height:30px; background-color:#87CEEB;">
+		<span><a type="button" class="btn" onclick="setShape('select');">asdasdasd</a></span>
+		<span><a type="button" class="btndraw">asdasd</a></span>
 		<table id="figureList" style="backgrond:url(../application/img/menu.png) no-repeat center; position:absolute; top:30px; left:70px; height:35px; display:none;">
 			<tr>
 				<td class="shapeGroup" style="background: url(../application/img/basicRect.png) no-repeat center; background-size:100%; background-color:#a9a9a9; width:30px; height:30px; ">
@@ -759,14 +759,14 @@ $(document).keydown(function(e){
 						<tr>
 							<td style="border-bottom:2px solid #ddd;" colspan="5">사각형</td>
 						</tr>
-						<tr style="height:40">
+						<tr style="height:40px">
 							<td  type="button" class="figureRect" onclick="setShape('rect');" width="50"></td>
 							<td  type="button" class="roundRect" onclick="setShape('roundRect');" width="50"></td>
 							<td   type="button" class="oneCutRect" onclick="setShape('oneCuttedRect');"  width="50"></td>
 							<td  type="button" class="twoCutRect" onclick="setShape('bonthCuttedRect');" width="50"></td>
 							<td  type="button" class="counterCutRect" onclick="setShape('counterCuttedRect');" width="50"></td>
 						</tr>
-						<tr style="height:40">
+						<tr style="height:40px">
 							<td  type="button" class="oneRoundCutRect" onclick="setShape('cuttedRoundRect');" width="50"></td>
 							<td  type="button" class="oneRoundRect" onclick="setShape('oneRoundRect');" width="50"></td>
 							<td  type="button" class="bothRoundRect" onclick="setShape('twoRoundRect');" width="50"></td>
@@ -776,21 +776,21 @@ $(document).keydown(function(e){
 						<tr>
 							<td style="border-bottom:2px solid #ddd;" colspan="5">기본도형</td>
 						</tr>
-						<tr style="height:40">
+						<tr style="height:40px">
 							<td  type="button" class="triangle" onclick="setShape('triangle');" width="50"></td>
 							<td  type="button" class="reversetriangle" onclick="setShape('reverseTriangle');" width="50"></td>
 							<td  type="button" class="righttriangle" onclick="setShape('rightAngelTriangle');" width="50"> </td>
 							<td  type="button" class="trapezoid" onclick="setShape('trapezoid');" width="50"></td>
 							<td  type="button" class="diamond" onclick="setShape('diamond');" width="50"></td>
 						</tr>
-						<tr style="height:40">
+						<tr style="height:40px">
 							<td  type="button" class="five" onclick="setShape('five');" width="50"></td>
 							<td  type="button" class="six" onclick="setShape('six');" width="50"></td>
 							<td  type="button" class="seven" onclick="setShape('seven');" width="50"></td>
 							<td  type="button" class="eight" onclick="setShape('eight');" width="50"> </td>
 							<td  type="button" class="ten" onclick="setShape('ten');" width="50"></td>
 						</tr>
-						<tr style="height:40">
+						<tr style="height:40px">
 							<td  type="button" class="twelve" onclick="setShape('tewelve');" width="50"></td>
 							<td  type="button" class="circle" onclick="setShape('circle');" width="50"></td>
 						</tr>
@@ -798,28 +798,28 @@ $(document).keydown(function(e){
 				</td>
 				<td class="shapeGroup" style="background: url(../application/img/arrow1.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="arrowlist" style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:40">
+								<tr style="height:40px">
 									<td  type="button" class="leftarrow" onclick="setShape('rightArrorw');" width="50"> </td>
 									<td  type="button" class="rightarrow" onclick="setShape('leftArrorw');"  width="50"></td>
 									<td	 type="button" class="uparrow" onclick="setShape('upArrorw');"  width="50"></td>
 									<td  type="button" class="downarrow" onclick="setShape('downArrorw'); "  width="50"></td>
 									<td  type="button" class="botharrow" onclick="setShape('bothSideArrorw');"  width="50"> </td>
 								</tr>
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="updownarrow" onclick="setShape('upDownArrorw');" width="50"></td>
 									<td  type="button" class="crossarrow" onclick="setShape('fourArrorw');" width="50"> </td>
 									<td  type="button" class="threearrow" onclick="setShape('threewayArrorw');" width="50"></td>
 									<td  type="button" class="rightturnarrow" onclick="setShape('rightCurveArrorw');" width="50"></td>
 									<td  type="button" class="uarrow" onclick="setShape('uturnCurveArrorw');" width="50"></td>
 								</tr>
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="leftuparrow" onclick="setShape('leftUpArrorw');" width="50"></td>
 									<td  type="button" class="upfarrow" onclick="setShape('UpforwordArrorw');" width="50"></td>
 									<td  type="button" class="rightcurvearrow" onclick="setShape('rightBendArrorw');" width="50"></td>
 									<td  type="button" class="leftcurvearrow" onclick="setShape('leftBendArrorw');" width="50"></td>
 									<td  type="button" class="rightexarrow" onclick="setShape('explainRightArrorw');" width="50"></td>
 								</tr>
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="leftrightexarrow" onclick="setShape('explainRightLeftArrorw');" width="50"></td>
 									<td  type="button" class-"fourexarrow"onclick="setShape('explainRightLeftUpDownArrorw');" width="50"></td>
 									<td></td>
@@ -830,28 +830,28 @@ $(document).keydown(function(e){
 				</td>
 				<td class="shapeGroup" style="background: url(../application/img/flow.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="flowlist"style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="flowbasicarrow" onclick="setShape('flowChartBasic');" width="50"></td>
 									<td  type="button" class="bothflowarrow" onclick="setShape('bothFlowChart');"  width="50"></td>
 									<td	 type="button" class="saveflow" onclick="setShape('flowChartInnerSavaSpace');"  width="50"></td>
 									<td  type="button" class="finalflow" onclick="setShape('flowChartFinal');" width="50"></td>
 									<td  type="button" class="six" onclick="setShape('flowChartReady');" width="50"></td>
 								</tr>
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="handflow1" onclick="setShape('flowChartHandWork');" width="50"></td>
 									<td  type="button" class="handflow2" onclick="setShape('flowChartHandWork2');" width="50"></td>
 									<td  type="button" class="chartcard" onclick="setShape('flowChartCard');" width="50"></td>
 									<td  type="button" class="charttotal" onclick="setShape('flowChartTotal');" width="50"></td>
 									<td  type="button" class="chartor" onclick="setShape('flowChartOr');" width="50"></td>
 								</tr>
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="dataarray" onclick="setShape('flowChartDataArray');" width="50"></td>
 									<td  type="button" class="chartarray" onclick="setShape('flowChartArray');" width="50"></td>
 									<td  type="button" class="saveddata" onclick="setShape('flowChartStoredData');" width="50"></td>
 									<td  type="button" class="disk" onclick="setShape('flowChartDisk');" width="50"></td>
 									<td  type="button" class="delay" onclick="setShape('flowChartDelay');" width="50"></td>
 								</tr>
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="directacces" onclick="setShape('flowChartDirectAccessDisk');" width="50"></td>
 									<td  type="check" class="check" onclick="setShape('flowChartCheck');" width="50"></td>
 									<td type="button" class="figureRect" onclick="setShape('rect');" width="50"></td>
@@ -862,26 +862,26 @@ $(document).keydown(function(e){
 				</td>
 				<td class="shapeGroup" style="background: url(../application/img/basicheart.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="extralist" style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="heart" onclick="setShape('heart');" width="50"></td>
 									<td  type="button" class="lightening" onclick="setShape('lightening');" width="50"></td>
 									<td  type="button" class="cloud" onclick="setShape('cloud');" width="50"></td>
 									<td  type="button" class="yes" onclick="setShape('yes');" width="50"></td>
-									<td   type="button" class="no" onclick="setShape('no');" width="50"></td>
+									<td  type="button" class="no" onclick="setShape('no');" width="50"></td>
 								</tr>
 							</table>
 						</td>
 
 				<td class="shapeGroup" style="background: url(../application/img/basiccal.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="callist" style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td  type="button" class="plus" onclick="setShape('plus');" width="50"></td>
 									<td  type="button" class="minus" onclick="setShape('minus');"  width="50"></td>
 									<td type="button" class="multiple" onclick="setShape('multiple');" width="50"></td>
 									<td type="button" class="division" onclick="setShape('division');" width="50"></td>
 									<td type="button" class="equal" onclick="setShape('equal');" width="50"></td>
 								</tr>
-								<tr style="height:48">
+								<tr style="height:48px">
 									<td type="button" class="notequal" onclick="setShape('notEqual');" width="50"></td>
 									<td></td>
 									<td></td>
@@ -892,7 +892,7 @@ $(document).keydown(function(e){
 						</td>
 			</tr>
 		</table>
-		<span><a type="button" class="btnLine" onclick="setShape('line');"></a></span>
+		<span><a type="button" class="btnLine" onclick="setShape('line');">asdasd</a></span>
 		<span><img src="../application/img/brushtext.png" style="height:30px"/></span>
 		<input type="text" id="brush_size" value="1" style="position:absolute; top:5px; width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
 		<span><img src="../application/img/alpha.png" style="position:absolute; top:0px; left:320px; height:30px"/></span>
