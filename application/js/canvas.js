@@ -1,4 +1,16 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
 canvas = function(){
 	this.boxes = [];
 	this.background = "background-color:#eee;";
@@ -10,7 +22,7 @@ canvas = function(){
 canvas.prototype = {
 	draw : function(){
 
-		for(i=0; i<this.boxes.length; i++){
+		for(var i in this.boxes){
 			// gs를 그려줌.
 			if($(this.gs).length){
 				if(this.gs[i].name!="text"){
@@ -50,7 +62,11 @@ canvas.prototype = {
 		}
 		
 		if(maxx-minx<5 && maxy-miny<5){
-			for(i=this.boxes.length-1; i>=0; i--){
+			var mykeys = [];
+			for(mykeys[mykeys.length] in this.boxes);
+			mykeys.reverse();
+			for(var t_i in mykeys){
+				i = mykeys[t_i];
 				clear(this.gctx);
 				this.boxes[i].draw(this.gctx);
 				var pixel = mainC.gctx.getImageData(maxx, maxy, 1, 1);
@@ -59,9 +75,12 @@ canvas.prototype = {
 					break;
 				}
 			}
-		}
-		else{
-			for(i=this.boxes.length-1; i>=0; i--){
+		}else{
+			var mykeys = [];
+			for(mykeys[mykeys.length] in this.boxes);
+			mykeys.reverse();
+			for(var t_i in mykeys){
+				i = mykeys[t_i];
 				clear(this.gctx);
 				if(this.boxes[i].sx >= minx  && this.boxes[i].sx <= maxx && this.boxes[i].ex >= minx  && this.boxes[i].ex <= maxx && this.boxes[i].sy >= miny  && this.boxes[i].sy <= maxy && this.boxes[i].ey >= miny  && this.boxes[i].ey <= maxy){
 					this.select(i);

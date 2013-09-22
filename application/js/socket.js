@@ -1,3 +1,54 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var app = require('http').createServer(handler)
   , io = require('socket.io').listen(app)
   , fs = require('fs')
@@ -49,6 +100,7 @@ io.sockets.on('connection', function(socket) {
 	});
 
 	socket.on('modifyBox', function(data){
+		console.log(data.box_idx);
 		conn.query('update box set ? where box_idx = ? and canvas_idx = ? and project_idx = ?', [{
 				box_x : data.box_x
 				, box_y : data.box_y
@@ -81,6 +133,15 @@ io.sockets.on('connection', function(socket) {
 			}
 		});
 		socket.broadcast.to(this.roomNum).emit("addBoxToParent", data);
+	});
+
+	socket.on('delBox', function(data){
+		conn.query('delete from box where box_idx = ? and canvas_idx = ? and project_idx = ?', [data.box_idx, data.canvas_idx, data.project_idx], function(err, res, field){
+			if(err){
+				console.log("에러 발생."); return;
+			}
+		});
+		socket.broadcast.to(this.roomNum).emit("delBox", data);
 	});
 
 	socket.on('addCanvas', function(data){

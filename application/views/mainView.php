@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -8,6 +13,8 @@
 	html, body { padding:0; margin:0; }
 </style>
 
+<link rel="Stylesheet" type="text/css" href="../application/js/figureButton.css" />
+
 <script src="../application/js/common/jquery-2.0.2.min.js"></script>
 <script src="../application/js/shapeList.js"></script>
 <script src="../application/js/shape.js"></script>
@@ -15,9 +22,27 @@
 
 <script src="http://203.253.20.234:8005/socket.io/socket.io.js"></script>
 <link rel="Stylesheet" type="text/css" href="../application/js/figureButton.css" />
+<script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
+
 <!-- wColorPicker -->
 <link rel="Stylesheet" type="text/css" href="../application/js/common/wColorPicker.css" />
 <script type="text/javascript" src="../application/js/common/wColorPicker.js"></script>
+
+
+<!-- 부트스트랩 -->
+<link href="../application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-transition.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-alert.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-modal.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-dropdown.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-scrollspy.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tab.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tooltip.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-popover.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-button.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-collapse.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-carousel.js"></script>
+<script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
 
 <script>
 
@@ -78,6 +103,12 @@ $(function(){
 			var pixel = mainC.ctx.getImageData(e.offsetX, e.offsetY, 1, 1);
 			if(pixel.data[3]>0){
 				for(i=mainC.boxes.length-1; i>=0; i--){
+
+				var mykeys = [];
+				for(mykeys[mykeys.length] in mainC.boxes);
+				mykeys.reverse();
+				for(var t_i in mykeys){
+					i = mykeys[t_i];
 					clear(mainC.gctx);
 					mainC.boxes[i].draw(mainC.gctx);
 					var gpixel = mainC.gctx.getImageData(sx, sy, 1, 1);
@@ -124,36 +155,93 @@ $(function(){
 	function setPoint(c, i, point){
 		box = mainC.gs[i];
 		rBox = mainC.boxes[i];
+	function setPoint(c, point){
+		pBox = mainC.gs[resize_box];
+		prBox = mainC.boxes[resize_box];
+		diff_x1 = 0;
+		diff_x2 = 0;
+		diff_y1 = 0;
+		diff_y2 = 0;
 
 		switch(c){
 			case "x1" : 
 				if(rBox.sx==rBox.x){
 					box.sx = point;
+				if(prBox.sx==prBox.x){
+					diff_x1 = point - pBox.sx;
 				}else{
 					box.ex = point;
+					diff_x1 = point - pBox.ex;
 				}
 				break;
 			case "y1" : 
 				if(rBox.sy==rBox.y){
 					box.sy = point;
+				if(prBox.sy==prBox.y){
+					diff_y1 = point - pBox.sy;
 				}else{
 					box.ey = point;
+					diff_y1 = point - pBox.ey;
 				}
 				break;
 			case "x2" : 
 				if(rBox.sx==rBox.x){
 					box.ex = point;
+				if(prBox.sx==prBox.x){
+					diff_x2 = point - pBox.ex;
 				}else{
 					box.sx = point;
+					diff_x2 = point - pBox.sx;
 				}
 				break;
 			case "y2" : 
 				if(rBox.sy==rBox.y){
 					box.ey = point;
+				if(prBox.sy==prBox.y){
+					diff_y2 = point - pBox.ey;
 				}else{
 					box.sy = point;
+					diff_y2 = point - pBox.sy;
 				}
 				break;
+		}
+
+		for(i in mainC.selList){
+			box = mainC.gs[i];
+			rBox = mainC.boxes[i];
+			switch(c){
+				case "x1" : 
+					if(rBox.sx==rBox.x){
+						box.sx += diff_x1;
+					}else{
+						box.ex += diff_x1;
+					}
+					break;
+				case "y1" : 
+					if(rBox.sy==rBox.y){
+						box.sy += diff_y1;
+					}else{
+						box.ey += diff_y1;
+					}
+					break;
+				case "x2" : 
+					if(rBox.sx==rBox.x){
+						box.ex += diff_x2;
+					}else{
+						box.sx += diff_x2;
+					}
+					break;
+				case "y2" : 
+					if(rBox.sy==rBox.y){
+						box.ey += diff_y2;
+					}else{
+						box.sy += diff_y2;
+					}
+					break;
+			}
+
+			mainC.gs[i] = mainC.addShape(mainC.gs[i], 1);
+			copyStyle(mainC.gs[i], mainC.boxes[i]);
 		}
     }
 	$("#mainCanvas").mousemove(function(e){
@@ -207,7 +295,38 @@ $(function(){
 							copyStyle(mainC.gs[i], mainC.boxes[i]);
 							break;
 					}
+
+				switch(resize_point){
+					case 0 :
+						setPoint("x1", e.offsetX);
+						setPoint("y1", e.offsetY);
+						break;
+					case 1 :
+						setPoint("y1", e.offsetY);
+						break;
+					case 2 :
+						setPoint("x2", e.offsetX);
+						setPoint("y1", e.offsetY);
+						break;
+					case 3 :
+						setPoint("x1", e.offsetX);
+						break;
+					case 4 :
+						setPoint("x2", e.offsetX);
+						break;
+					case 5 :
+						setPoint("x1", e.offsetX);
+						setPoint("y2", e.offsetY);
+						break;
+					case 6 :
+						setPoint("y2", e.offsetY);
+						break;
+					case 7 :
+						setPoint("x2", e.offsetX);
+						setPoint("y2", e.offsetY);
+						break;
 				}
+
 			}
 
 			var pixel = mainC.ctx.getImageData(e.offsetX, e.offsetY, 1, 1);
@@ -316,6 +435,7 @@ $(function(){
 				getBoxFromparent(i);
 
 				updateBox(i);
+				//updateBox(i);
 			}
 		
 		}else{
@@ -399,6 +519,7 @@ $(function(){
 					mainC.gs[i].fillColor = selectColor;
 					getBoxFromparent(i);
 					updateBox(i);
+					//updateBox(i);
 					intervalDraw();
 				}
 			}
@@ -419,6 +540,7 @@ $(function(){
 					mainC.gs[i].strokeColor = selectColor;
 					getBoxFromparent(i);
 					updateBox(i);
+					//updateBox(i);
 					intervalDraw();
 				}
 			}
@@ -458,15 +580,41 @@ function copyStyle(a, b){
 	a.text = b.text;
 }
 
+function updateBox(i){
+	var box = parentC.boxes[i];
+	parent.socket.emit("modifyBox", {
+		box_idx : i
+		, canvas_idx : parent.socket.parentNum
+		, project_idx : parent.project_idx
+		, box_name : box.name
+		, box_x : box.x
+		, box_y : box.y
+		, box_w : box.w
+		, box_h : box.h
+		, box_sx : box.sx
+		, box_sy : box.sy
+		, box_ex : box.ex
+		, box_ey : box.ey
+		, box_alpha : box.alpha
+		, box_fill_color : box.fillColor
+		, box_stroke_color : box.strokeColor
+		, box_line_width : box.lineWidth
+		, box_line_cap : box.lineCap
+		, box_text : box.text
+	});
+}
+
 function getBoxFromparent(i){
 	if(i > -1){
 		mainC.boxes[i] = parentC.boxes[i];
+		updateBox(i);
 		return;
 	}
 
 	clearBox(mainC);
 	mainC.gs = [];
 	for(i=0; i<parentC.boxes.length; i++){
+	for(i in parentC.boxes){
 		mainC.boxes[i] = parentC.boxes[i];
 
 		newShape = new shape();
@@ -562,6 +710,7 @@ $(document).keyup(function(e){
 			if(control_flag==1){
 				for(i=0; i<mainC.boxes.length; i++)
 				{
+				for(var i in mainC.boxes){
 					mainC.select(i);
 				}
 			}
@@ -638,6 +787,7 @@ $(document).keydown(function(e){
  	switch(e.keyCode){
  		case 37 : // ←
  			for(i=mainC.selList.length-1; i>=0;i--){
+ 			for(var i in mainC.selList){
 				if(mainC.selList[i] == 1)
 				{	
 					if(mainC.gs[i].sx != 0)
@@ -654,6 +804,7 @@ $(document).keydown(function(e){
 			break;
 		case 38 : // ↑
 			for(i=mainC.selList.length-1; i>=0;i--){
+			for(var i in mainC.selList){
 				if(mainC.selList[i] == 1)
 				{	
 					if(mainC.gs[i].sy != 0)
@@ -669,6 +820,7 @@ $(document).keydown(function(e){
 			break;
 		case 39 : // →
 			for(i=mainC.selList.length-1; i>=0;i--){
+			for(var i in mainC.selList){
 				if(mainC.selList[i] == 1)
 				{
 					if(mainC.gs[i].ex != 640)
@@ -684,6 +836,7 @@ $(document).keydown(function(e){
 			break;
 		case 40 : // ↓
 			for(i=mainC.selList.length-1; i>=0;i--){
+			for(var i in mainC.selList){
 				if(mainC.selList[i] == 1)
 				{	
 					if(mainC.gs[i].ey != 400)
@@ -699,15 +852,31 @@ $(document).keydown(function(e){
 			break;
 		case 46 : // del
 			for(i=mainC.selList.length-1; i>=0;i--){
+			for(var i in mainC.selList){
 				if(mainC.selList[i] == 1)
 				{
 					parentC.boxes.splice(i,1);
+					delete parentC.boxes[i];
+					delete mainC.gs[i];
+					//parentC.boxes.splice(i,1);
 					mainC.unSelect(i);
 					mainC.gs.splice(i,1);
 					getBoxFromparent();
+					//mainC.gs.splice(i,1);
+
+					parent.socket.emit("delBox", {
+						box_idx : i
+						, canvas_idx : parent.socket.parentNum
+						, project_idx : parent.project_idx
+					});
+
+					getBoxFromparent(-1);
 					
 				}
 			}
+			break;
+		case 116 : // F5
+			loadCanvas(parent.socket.parentNum);
 			break;
 	}
 
@@ -716,6 +885,7 @@ $(document).keydown(function(e){
 });
 
 </script>
+
 <script>
 	$(function(){
 		$(".btndraw").click(function(){
@@ -723,6 +893,12 @@ $(document).keydown(function(e){
 			}).mouseenter(function(){
 			$("#figureList").hide();
 		});
+$(function(){
+	$(".btndraw").click(function(){
+		$("#figureList").show();
+		}).mouseenter(function(){
+		$("#figureList").hide();
+	});
 
 		$(".shapeGroup").mouseover(function(){
 			$(this).children().show();
@@ -744,82 +920,151 @@ $(document).keydown(function(e){
 		$(".callist").click(function(){
 			$("#figureList").hide();
 			});
+	$(".shapeGroup").mouseover(function(){
+		$(this).children().show();
+	}).mouseleave(function(){
+		$(this).children().hide();
 	});
 		
+
+	$(".figure").click(function(){
+		$("#figureList").hide();
+	});
+
+	$(".arrowlist").click(function(){
+		$("#figureList").hide();
+	});
+
+	$(".flowlist").click(function(){
+		$("#figureList").hide();
+	});
+
+	$(".extralist").click(function(){
+		$("#figureList").hide();
+	});
+
+	$(".callist").click(function(){
+		$("#figureList").hide();
+	});
+});
 </script>
 </head>
 <body>
-	<div id="btnGroup" style="min-width:700px; height:30px; background-color:#87CEEB;">
-		<span><a type="button" class="btn" onclick="setShape('select');">asdasdasd</a></span>
-		<span><a type="button" class="btndraw">asdasd</a></span>
+	<div id="btnGroup" style="min-width:700px;height:30px;background-color:#87CEEB;">
+		<span><a type="button" class="btn" onclick="setShape('select');"></a></span>
+		<span><a type="button" class="btndraw"></a></span>
 		<table id="figureList" style="backgrond:url(../application/img/menu.png) no-repeat center; position:absolute; top:30px; left:70px; height:35px; display:none;">
+	<div id="btnGroup" style="min-width:640px;height:30px;background-color:#87CEEB;">
+		<span><a type="button" class="btn" onclick="setShape('select');"></a></span>
+		<span><a type="button" class="btndraw">aaa</a></span>
+		<span><a type="button" class="btnLine" onclick="setShape('line');"></a></span>
+		<span><img src="../application/js/img/brushtext.png" style="height:30px"/></span>
+		<input type="text" id="brush_size" value="1" style="position:absolute; top:5px; width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
+		<span><img src="../application/js/img/alpha.png" style="position:absolute; top:0px; left:320px; height:30px"/></span>
+		<input type="text" id="opacity" value="1" style="position:absolute; top:5px; left:420px;width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
+		<div style="display:inline;">
+			<div><img src="../application/js/img/linecolor.png" style="position:absolute; top:1px; left:465px; height:30px"> </div>
+			<div id="strokeColorPicker" style="position:absolute; top:5px; left:520px; display:inline;"></div>
+			<div><img src="../application/js/img/figurecolor.png" style="position:absolute; top:1px; left:535px; height:30px"> </div>
+			<div id="fillColorPicker" style="position:absolute; top:5px; left:580px;display:inline;"></div>
+		</div>
+
+		<table id="figureList" style="backgrond:url(../application/js/img/menu.png) no-repeat center; position:absolute; top:30px; left:70px; height:35px; display:none;">
 			<tr>
 				<td class="shapeGroup" style="background: url(../application/img/basicRect.png) no-repeat center; background-size:100%; background-color:#a9a9a9; width:30px; height:30px; ">
+				<td class="shapeGroup" style="background: url(../application/js/img/basicRect.png) no-repeat center; background-size:100%; background-color:#a9a9a9; width:30px; height:30px; ">
 					<table class="figure" style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
 						<tr>
 							<td style="border-bottom:2px solid #ddd;" colspan="5">사각형</td>
 						</tr>
-						<tr style="height:40px">
+						<tr style="height:40">
 							<td  type="button" class="figureRect" onclick="setShape('rect');" width="50"></td>
 							<td  type="button" class="roundRect" onclick="setShape('roundRect');" width="50"></td>
 							<td   type="button" class="oneCutRect" onclick="setShape('oneCuttedRect');"  width="50"></td>
 							<td  type="button" class="twoCutRect" onclick="setShape('bonthCuttedRect');" width="50"></td>
 							<td  type="button" class="counterCutRect" onclick="setShape('counterCuttedRect');" width="50"></td>
-						</tr>
 						<tr style="height:40px">
+							<td type="button" class="figureRect" onclick="setShape('rect');" width="50"></td>
+							<td type="button" class="roundRect" onclick="setShape('roundRect');" width="50"></td>
+							<td type="button" class="oneCutRect" onclick="setShape('oneCuttedRect');"  width="50"></td>
+							<td type="button" class="twoCutRect" onclick="setShape('bonthCuttedRect');" width="50"></td>
+							<td type="button" class="counterCutRect" onclick="setShape('counterCuttedRect');" width="50"></td>
+						</tr>
+						<tr style="height:40">
 							<td  type="button" class="oneRoundCutRect" onclick="setShape('cuttedRoundRect');" width="50"></td>
 							<td  type="button" class="oneRoundRect" onclick="setShape('oneRoundRect');" width="50"></td>
 							<td  type="button" class="bothRoundRect" onclick="setShape('twoRoundRect');" width="50"></td>
 							<td  type="button" class="counterRoundRect" onclick="setShape('counterRoundRect');" width="50"></td>
+						<tr style="height:40px">
+							<td type="button" class="oneRoundCutRect" onclick="setShape('cuttedRoundRect');" width="50"></td>
+							<td type="button" class="oneRoundRect" onclick="setShape('oneRoundRect');" width="50"></td>
+							<td type="button" class="bothRoundRect" onclick="setShape('twoRoundRect');" width="50"></td>
+							<td type="button" class="counterRoundRect" onclick="setShape('counterRoundRect');" width="50"></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td style="border-bottom:2px solid #ddd;" colspan="5">기본도형</td>
 						</tr>
-						<tr style="height:40px">
+						<tr style="height:40">
 							<td  type="button" class="triangle" onclick="setShape('triangle');" width="50"></td>
 							<td  type="button" class="reversetriangle" onclick="setShape('reverseTriangle');" width="50"></td>
 							<td  type="button" class="righttriangle" onclick="setShape('rightAngelTriangle');" width="50"> </td>
 							<td  type="button" class="trapezoid" onclick="setShape('trapezoid');" width="50"></td>
 							<td  type="button" class="diamond" onclick="setShape('diamond');" width="50"></td>
-						</tr>
 						<tr style="height:40px">
+							<td type="button" class="triangle" onclick="setShape('triangle');" width="50"></td>
+							<td type="button" class="reversetriangle" onclick="setShape('reverseTriangle');" width="50"></td>
+							<td type="button" class="righttriangle" onclick="setShape('rightAngelTriangle');" width="50"> </td>
+							<td type="button" class="trapezoid" onclick="setShape('trapezoid');" width="50"></td>
+							<td type="button" class="diamond" onclick="setShape('diamond');" width="50"></td>
+						</tr>
+						<tr style="height:40">
 							<td  type="button" class="five" onclick="setShape('five');" width="50"></td>
 							<td  type="button" class="six" onclick="setShape('six');" width="50"></td>
 							<td  type="button" class="seven" onclick="setShape('seven');" width="50"></td>
 							<td  type="button" class="eight" onclick="setShape('eight');" width="50"> </td>
 							<td  type="button" class="ten" onclick="setShape('ten');" width="50"></td>
-						</tr>
 						<tr style="height:40px">
+							<td type="button" class="five" onclick="setShape('five');" width="50"></td>
+							<td type="button" class="six" onclick="setShape('six');" width="50"></td>
+							<td type="button" class="seven" onclick="setShape('seven');" width="50"></td>
+							<td type="button" class="eight" onclick="setShape('eight');" width="50"> </td>
+							<td type="button" class="ten" onclick="setShape('ten');" width="50"></td>
+						</tr>
+						<tr style="height:40">
 							<td  type="button" class="twelve" onclick="setShape('tewelve');" width="50"></td>
 							<td  type="button" class="circle" onclick="setShape('circle');" width="50"></td>
+						<tr style="height:40px">
+							<td type="button" class="twelve" onclick="setShape('tewelve');" width="50"></td>
+							<td type="button" class="circle" onclick="setShape('circle');" width="50"></td>
 						</tr>
 					</table>
 				</td>
 				<td class="shapeGroup" style="background: url(../application/img/arrow1.png) no-repeat center; background-size:100%; width:30px; height:30px;">
+				<td class="shapeGroup" style="background: url(../application/js/img/arrow1.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="arrowlist" style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:40px">
+								<tr style="height:40">
 									<td  type="button" class="leftarrow" onclick="setShape('rightArrorw');" width="50"> </td>
 									<td  type="button" class="rightarrow" onclick="setShape('leftArrorw');"  width="50"></td>
 									<td	 type="button" class="uparrow" onclick="setShape('upArrorw');"  width="50"></td>
 									<td  type="button" class="downarrow" onclick="setShape('downArrorw'); "  width="50"></td>
 									<td  type="button" class="botharrow" onclick="setShape('bothSideArrorw');"  width="50"> </td>
 								</tr>
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="updownarrow" onclick="setShape('upDownArrorw');" width="50"></td>
 									<td  type="button" class="crossarrow" onclick="setShape('fourArrorw');" width="50"> </td>
 									<td  type="button" class="threearrow" onclick="setShape('threewayArrorw');" width="50"></td>
 									<td  type="button" class="rightturnarrow" onclick="setShape('rightCurveArrorw');" width="50"></td>
 									<td  type="button" class="uarrow" onclick="setShape('uturnCurveArrorw');" width="50"></td>
 								</tr>
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="leftuparrow" onclick="setShape('leftUpArrorw');" width="50"></td>
 									<td  type="button" class="upfarrow" onclick="setShape('UpforwordArrorw');" width="50"></td>
 									<td  type="button" class="rightcurvearrow" onclick="setShape('rightBendArrorw');" width="50"></td>
 									<td  type="button" class="leftcurvearrow" onclick="setShape('leftBendArrorw');" width="50"></td>
 									<td  type="button" class="rightexarrow" onclick="setShape('explainRightArrorw');" width="50"></td>
 								</tr>
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="leftrightexarrow" onclick="setShape('explainRightLeftArrorw');" width="50"></td>
 									<td  type="button" class-"fourexarrow"onclick="setShape('explainRightLeftUpDownArrorw');" width="50"></td>
 									<td></td>
@@ -827,31 +1072,61 @@ $(document).keydown(function(e){
 									<td></td>
 								</tr>
 							</table>
+						<tr style="height:40px">
+							<td type="button" class="leftarrow" onclick="setShape('rightArrorw');" width="50"> </td>
+							<td type="button" class="rightarrow" onclick="setShape('leftArrorw');"  width="50"></td>
+							<td type="button" class="uparrow" onclick="setShape('upArrorw');"  width="50"></td>
+							<td type="button" class="downarrow" onclick="setShape('downArrorw'); "  width="50"></td>
+							<td type="button" class="botharrow" onclick="setShape('bothSideArrorw');"  width="50"> </td>
+						</tr>
+						<tr style="height:48px">
+							<td type="button" class="updownarrow" onclick="setShape('upDownArrorw');" width="50"></td>
+							<td type="button" class="crossarrow" onclick="setShape('fourArrorw');" width="50"> </td>
+							<td type="button" class="threearrow" onclick="setShape('threewayArrorw');" width="50"></td>
+							<td type="button" class="rightturnarrow" onclick="setShape('rightCurveArrorw');" width="50"></td>
+							<td type="button" class="uarrow" onclick="setShape('uturnCurveArrorw');" width="50"></td>
+						</tr>
+						<tr style="height:48px">
+							<td type="button" class="leftuparrow" onclick="setShape('leftUpArrorw');" width="50"></td>
+							<td type="button" class="upfarrow" onclick="setShape('UpforwordArrorw');" width="50"></td>
+							<td type="button" class="rightcurvearrow" onclick="setShape('rightBendArrorw');" width="50"></td>
+							<td type="button" class="leftcurvearrow" onclick="setShape('leftBendArrorw');" width="50"></td>
+							<td type="button" class="rightexarrow" onclick="setShape('explainRightArrorw');" width="50"></td>
+						</tr>
+						<tr style="height:48px">
+							<td type="button" class="leftrightexarrow" onclick="setShape('explainRightLeftArrorw');" width="50"></td>
+							<td type="button" class-"fourexarrow"onclick="setShape('explainRightLeftUpDownArrorw');" width="50"></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
 				</td>
 				<td class="shapeGroup" style="background: url(../application/img/flow.png) no-repeat center; background-size:100%; width:30px; height:30px;">
+				<td class="shapeGroup" style="background: url(../application/js/img/flow.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="flowlist"style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="flowbasicarrow" onclick="setShape('flowChartBasic');" width="50"></td>
 									<td  type="button" class="bothflowarrow" onclick="setShape('bothFlowChart');"  width="50"></td>
 									<td	 type="button" class="saveflow" onclick="setShape('flowChartInnerSavaSpace');"  width="50"></td>
 									<td  type="button" class="finalflow" onclick="setShape('flowChartFinal');" width="50"></td>
 									<td  type="button" class="six" onclick="setShape('flowChartReady');" width="50"></td>
 								</tr>
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="handflow1" onclick="setShape('flowChartHandWork');" width="50"></td>
 									<td  type="button" class="handflow2" onclick="setShape('flowChartHandWork2');" width="50"></td>
 									<td  type="button" class="chartcard" onclick="setShape('flowChartCard');" width="50"></td>
 									<td  type="button" class="charttotal" onclick="setShape('flowChartTotal');" width="50"></td>
 									<td  type="button" class="chartor" onclick="setShape('flowChartOr');" width="50"></td>
 								</tr>
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="dataarray" onclick="setShape('flowChartDataArray');" width="50"></td>
 									<td  type="button" class="chartarray" onclick="setShape('flowChartArray');" width="50"></td>
 									<td  type="button" class="saveddata" onclick="setShape('flowChartStoredData');" width="50"></td>
 									<td  type="button" class="disk" onclick="setShape('flowChartDisk');" width="50"></td>
 									<td  type="button" class="delay" onclick="setShape('flowChartDelay');" width="50"></td>
 								</tr>
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="directacces" onclick="setShape('flowChartDirectAccessDisk');" width="50"></td>
 									<td  type="check" class="check" onclick="setShape('flowChartCheck');" width="50"></td>
 									<td type="button" class="figureRect" onclick="setShape('rect');" width="50"></td>
@@ -859,29 +1134,69 @@ $(document).keydown(function(e){
 									<td></td>
 								</tr>
 							</table>
+						<tr style="height:48px">
+							<td type="button" class="flowbasicarrow" onclick="setShape('flowChartBasic');" width="50"></td>
+							<td type="button" class="bothflowarrow" onclick="setShape('bothFlowChart');"  width="50"></td>
+							<td	type="button" class="saveflow" onclick="setShape('flowChartInnerSavaSpace');"  width="50"></td>
+							<td type="button" class="finalflow" onclick="setShape('flowChartFinal');" width="50"></td>
+							<td type="button" class="six" onclick="setShape('flowChartReady');" width="50"></td>
+						</tr>
+						<tr style="height:48px">
+							<td type="button" class="handflow1" onclick="setShape('flowChartHandWork');" width="50"></td>
+							<td type="button" class="handflow2" onclick="setShape('flowChartHandWork2');" width="50"></td>
+							<td type="button" class="chartcard" onclick="setShape('flowChartCard');" width="50"></td>
+							<td type="button" class="charttotal" onclick="setShape('flowChartTotal');" width="50"></td>
+							<td type="button" class="chartor" onclick="setShape('flowChartOr');" width="50"></td>
+						</tr>
+						<tr style="height:48px">
+							<td type="button" class="dataarray" onclick="setShape('flowChartDataArray');" width="50"></td>
+							<td type="button" class="chartarray" onclick="setShape('flowChartArray');" width="50"></td>
+							<td type="button" class="saveddata" onclick="setShape('flowChartStoredData');" width="50"></td>
+							<td type="button" class="disk" onclick="setShape('flowChartDisk');" width="50"></td>
+							<td type="button" class="delay" onclick="setShape('flowChartDelay');" width="50"></td>
+						</tr>
+						<tr style="height:48px">
+							<td type="button" class="directacces" onclick="setShape('flowChartDirectAccessDisk');" width="50"></td>
+							<td type="check" class="check" onclick="setShape('flowChartCheck');" width="50"></td>
+							<td type="button" class="figureRect" onclick="setShape('rect');" width="50"></td>
+							<td type="button" class="roundRect" onclick="setShape('roundRect');" width="50"></td>
+							<td></td>
+						</tr>
+					</table>
 				</td>
 				<td class="shapeGroup" style="background: url(../application/img/basicheart.png) no-repeat center; background-size:100%; width:30px; height:30px;">
+				<td class="shapeGroup" style="background: url(../application/js/img/basicheart.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="extralist" style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="heart" onclick="setShape('heart');" width="50"></td>
 									<td  type="button" class="lightening" onclick="setShape('lightening');" width="50"></td>
 									<td  type="button" class="cloud" onclick="setShape('cloud');" width="50"></td>
 									<td  type="button" class="yes" onclick="setShape('yes');" width="50"></td>
-									<td  type="button" class="no" onclick="setShape('no');" width="50"></td>
+									<td   type="button" class="no" onclick="setShape('no');" width="50"></td>
 								</tr>
 							</table>
 						</td>
+						<tr style="height:48px">
+							<td type="button" class="heart" onclick="setShape('heart');" width="50"></td>
+							<td type="button" class="lightening" onclick="setShape('lightening');" width="50"></td>
+							<td type="button" class="cloud" onclick="setShape('cloud');" width="50"></td>
+							<td type="button" class="yes" onclick="setShape('yes');" width="50"></td>
+							<td type="button" class="no" onclick="setShape('no');" width="50"></td>
+						</tr>
+					</table>
+				</td>
 
 				<td class="shapeGroup" style="background: url(../application/img/basiccal.png) no-repeat center; background-size:100%; width:30px; height:30px;">
+				<td class="shapeGroup" style="background: url(../application/js/img/basiccal.png) no-repeat center; background-size:100%; width:30px; height:30px;">
 					<table class="callist" style="border:10px solid #ddd;position:absolute; top:30px; left:0px; display:none; width:400px; background-color:#fff;">
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td  type="button" class="plus" onclick="setShape('plus');" width="50"></td>
 									<td  type="button" class="minus" onclick="setShape('minus');"  width="50"></td>
 									<td type="button" class="multiple" onclick="setShape('multiple');" width="50"></td>
 									<td type="button" class="division" onclick="setShape('division');" width="50"></td>
 									<td type="button" class="equal" onclick="setShape('equal');" width="50"></td>
 								</tr>
-								<tr style="height:48px">
+								<tr style="height:48">
 									<td type="button" class="notequal" onclick="setShape('notEqual');" width="50"></td>
 									<td></td>
 									<td></td>
@@ -890,9 +1205,25 @@ $(document).keydown(function(e){
 								</tr>
 							</table>
 						</td>
+						<tr style="height:48px">
+							<td type="button" class="plus" onclick="setShape('plus');" width="50"></td>
+							<td  ype="button" class="minus" onclick="setShape('minus');"  width="50"></td>
+							<td type="button" class="multiple" onclick="setShape('multiple');" width="50"></td>
+							<td type="button" class="division" onclick="setShape('division');" width="50"></td>
+							<td type="button" class="equal" onclick="setShape('equal');" width="50"></td>
+						</tr>
+						<tr style="height:48px">
+							<td type="button" class="notequal" onclick="setShape('notEqual');" width="50"></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 		</table>
-		<span><a type="button" class="btnLine" onclick="setShape('line');">asdasd</a></span>
+		<span><a type="button" class="btnLine" onclick="setShape('line');"></a></span>
 		<span><img src="../application/img/brushtext.png" style="height:30px"/></span>
 		<input type="text" id="brush_size" value="1" style="position:absolute; top:5px; width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
 		<span><img src="../application/img/alpha.png" style="position:absolute; top:0px; left:320px; height:30px"/></span>
@@ -903,6 +1234,17 @@ $(document).keydown(function(e){
 			<div><img src="../application/img/figurecolor.png" style="position:absolute; top:1px; left:535px; height:30px"> </div>
 			<div id="fillColorPicker" style="position:absolute; top:5px; left:580px;display:inline;"></div>
 		</div>
+
+
+
+
+
+
+
+
+
+
+
 	</div>
 
 	<div id="textDiv" style="position:absolute; top:30px; left:0px; z-index:3;"></div>
