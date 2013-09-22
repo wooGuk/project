@@ -1,8 +1,14 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="kor">
 <head>
 	<meta charset="utf-8">
 	<title>Project List</title>
+
 <style type="text/css">
 	html { height:100%; margin:0; padding:0; }
 	body { height:100%; margin:0; padding:0; }
@@ -25,15 +31,20 @@
 		}
 </style>
 <link rel="Stylesheet" type="text/css" href="application/js/bubble.css" />
+
 <script src="application/js/common/jquery-2.0.2.min.js"></script>
 <script src="application/js/shapeList.js"></script>
 <script src="application/js/shape.js"></script>
 <script src="application/js/canvas.js"></script>
 <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
 <script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
 
 
 <!-- 부트스트랩 -->
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="application/js/bootstrap-2.3.2/docs/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet"/>
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
 <script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-transition.js"></script>
 <script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-alert.js"></script>
 <script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-modal.js"></script>
@@ -205,6 +216,18 @@ socket.on("addBoxToParent", function (data) {
 	tempS.lineWidth = data.box_line_width;
 	tempS.lineCap = data.box_line_cap;
 	tempC.boxes[data.box_idx] = tempS;
+
+	mainViewFrame.clear(tempC.ctx);
+	tempC.draw();
+	if(mainViewFrame.parentC==tempC){
+		loadCanvas(data.canvas_idx);
+	}
+});
+
+socket.on("delBox", function (data){
+	tempC = canvases[data.canvas_idx];
+
+	delete tempC.boxes[data.box_idx];
 
 	mainViewFrame.clear(tempC.ctx);
 	tempC.draw();
