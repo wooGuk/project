@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 canvas = function(){
 	this.boxes = [];
 	this.background = "background-color:#eee;";
