@@ -1,4 +1,133 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var line = {
 	draw : function(ctx, shape){
 		ctx.beginPath();
@@ -127,6 +256,7 @@ var counterRoundRect = {
 		ctx.beginPath();
 		ctx.moveTo(shape.x+(shape.w*0.1), shape.y);
 		ctx.lineTo(shape.x+shape.w, shape.y);
+		ctx.lineTo(shape.x+shape.w, shape.y+(shape.h*0.9));
 		ctx.quadraticCurveTo(shape.x+shape.w,shape.y+shape.h,shape.x+(shape.w*0.9),shape.y+shape.h);
 		ctx.lineTo(shape.x, shape.y+shape.h);
 		ctx.lineTo(shape.x, shape.y+(shape.h*0.1));
@@ -216,6 +346,7 @@ var ten= {
 		ctx.lineTo(shape.x+shape.w,shape.y+(shape.h*0.5));
 		ctx.lineTo(shape.x+(shape.w*0.9),shape.y+(shape.h*0.25));
 		ctx.lineTo(shape.x+(shape.w*0.8),shape.y);
+		ctx.lineTo(shape.x+(shape.w*0.2),shape.y);
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -445,6 +576,59 @@ var lightening = {
 		ctx.closePath();
 	}
 }
+
+var yes = {
+	draw : function(ctx, shape)
+	{
+		ctx.save();
+		ctx.beginPath();
+		ctx.moveTo(shape.x, shape.y+(shape.h*0.5));
+		ctx.bezierCurveTo(shape.x, shape.y, shape.x+shape.w, shape.y, shape.x+shape.w,shape.y+(shape.h*0.5));
+		ctx.bezierCurveTo(shape.x+shape.w, shape.y+shape.h, shape.x, shape.y+shape.h, shape.x,shape.y+(shape.h*0.5));
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.moveTo(shape.x+(shape.w*0.25), shape.y+(shape.h*0.5));
+		ctx.bezierCurveTo(shape.x+(shape.w*0.25), shape.y+(shape.h*0.25), shape.x+(shape.w*0.75), shape.y+(shape.h*0.25), shape.x+(shape.w*0.75),shape.y+(shape.h*0.5));
+		ctx.bezierCurveTo(shape.x+(shape.w*0.75), shape.y+(shape.h*0.75), shape.x+(shape.w*0.25), shape.y+(shape.h*0.75), shape.x+(shape.w*0.25),shape.y+(shape.h*0.5));
+		ctx.fillStyle=$(ctx.canvas).css('background-color');
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.restore();
+	}
+}
+
+var no = {
+	draw : function(ctx, shape)
+	{
+		ctx.save();
+		ctx.beginPath();
+		ctx.moveTo(shape.x, shape.y+(shape.h*0.5));
+		ctx.bezierCurveTo(shape.x, shape.y, shape.x+shape.w, shape.y, shape.x+shape.w,shape.y+(shape.h*0.5));
+		ctx.bezierCurveTo(shape.x+shape.w, shape.y+shape.h, shape.x, shape.y+shape.h, shape.x,shape.y+(shape.h*0.5));
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.moveTo(shape.x+(shape.w*0.25),shape.y+(shape.h*0.4));
+		ctx.lineTo(shape.x+(shape.w*0.65),shape.y+(shape.h*0.65));
+		ctx.bezierCurveTo(shape.x+(shape.w*0.4), shape.y+(shape.h*0.8), shape.x+(shape.w*0.05), shape.y+(shape.h*0.55),shape.x+(shape.w*0.25),shape.y+(shape.h*0.4));
+		ctx.fillStyle=$(ctx.canvas).css('background-color');
+		ctx.fill();
+		ctx.stroke();
+		ctx.moveTo(shape.x+(shape.w*0.35),shape.y+(shape.h*0.3));
+		ctx.lineTo(shape.x+(shape.w*0.76),shape.y+(shape.h*0.55));
+		ctx.bezierCurveTo(shape.x+(shape.w*0.95), shape.y+(shape.h*0.4), shape.x+(shape.w*0.6), shape.y+(shape.h*0.17), shape.x+(shape.w*0.35),shape.y+(shape.h*0.3));
+		ctx.fillStyle=$(ctx.canvas).css('background-color');
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+		ctx.restore();
+	}
+}
+
 var roundRect = {
 	draw : function(ctx, shape)
 	{
@@ -803,11 +987,12 @@ var flowChartDisk = {
 		ctx.beginPath();
 		
 		ctx.moveTo(shape.x,shape.y+(shape.h*0.125));
-		ctx.bezierCurveTo(shape.x,shape.y, shape.x+shape.w,shape.y,shape.x+shape.w,shape.y+(shape.h*0.125));
+		ctx.bezierCurveTo(shape.x,shape.y+(shape.h*0.375), shape.x+shape.w,shape.y+(shape.h*0.375),shape.x+shape.w,shape.y+(shape.h*0.125));
 		ctx.lineTo(shape.x+shape.w,shape.y+(shape.h*0.875));
 		ctx.bezierCurveTo(shape.x+shape.w,shape.y+shape.h, shape.x,shape.y+shape.h,shape.x,shape.y+(shape.h*0.875));
 		ctx.lineTo(shape.x,shape.y+(shape.h*0.125));
-		ctx.bezierCurveTo(shape.x,shape.y+(shape.h*0.375), shape.x+shape.w,shape.y+(shape.h*0.375),shape.x+shape.w,shape.y+(shape.h*0.125));
+		ctx.bezierCurveTo(shape.x,shape.y, shape.x+shape.w,shape.y,shape.x+shape.w,shape.y+(shape.h*0.125));
+		ctx.bezierCurveTo(shape.x+shape.w,shape.y+(shape.h*0.375), shape.x,shape.y+(shape.h*0.375),shape.x,shape.y+(shape.h*0.125));
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -822,9 +1007,11 @@ var flowChartDirectAccessDisk = {
 		ctx.bezierCurveTo(shape.x,shape.y,shape.x,shape.y+shape.h,shape.x+(shape.w*0.125),shape.y+shape.h);
 		ctx.lineTo(shape.x+(shape.w*0.875),shape.y+shape.h);
 		ctx.bezierCurveTo(shape.x+shape.w,shape.y+shape.h, shape.x+shape.w,shape.y,shape.x+(shape.w*0.875),shape.y);
-		ctx.bezierCurveTo(shape.x+(shape.w*0.75),shape.y, shape.x+(shape.w*0.75),shape.y+shape.h,shape.x+(shape.w*0.875),shape.y+shape.h);
-		ctx.moveTo(shape.x+(shape.w*0.875),shape.y);
 		ctx.lineTo(shape.x+(shape.w*0.125),shape.y);
+		ctx.moveTo(shape.x+(shape.w*0.875),shape.y);
+		ctx.bezierCurveTo(shape.x+(shape.w*0.75),shape.y, shape.x+(shape.w*0.75),shape.y+shape.h,shape.x+(shape.w*0.875),shape.y+shape.h);
+		//ctx.moveTo(shape.x+(shape.w*0.875),shape.y);
+		//ctx.lineTo(shape.x+(shape.w*0.125),shape.y);
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -1029,7 +1216,7 @@ var rightCurveArrorw = {
 		ctx.quadraticCurveTo(shape.x,shape.y+(shape.h*0.15),shape.x+(shape.w*0.47),shape.y+(shape.h*0.15),30);
 		ctx.lineTo(shape.x+(shape.w*0.75),shape.y+(shape.h*0.15));
 		ctx.lineTo(shape.x+(shape.w*0.75),shape.y);
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!				
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!				
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -1056,7 +1243,7 @@ var uturnCurveArrorw = {
 		ctx.lineTo(shape.x+(shape.w*0.31),shape.y+shape.h);
 		ctx.closePath();
 		
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!	
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!	
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -1083,7 +1270,7 @@ var leftUpArrorw = {
 		ctx.closePath();
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -1108,7 +1295,7 @@ var UpforwordArrorw = {
 		ctx.closePath();
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -1128,15 +1315,15 @@ var rightBendArrorw = {
 		ctx.lineTo(shape.x+shape.w,shape.y+(shape.h*0.75));
 		ctx.lineTo(shape.x+(shape.w*0.8),shape.y+shape.h);
 		ctx.lineTo(shape.x+(shape.w*0.8),shape.y+(shape.h*0.876));
-		ctx.quadraticCurveTo(shape.x+(shape.w*0.4),shape.y+(shape.h*0.876),shape.x,shape.y+(shape.h*0.7),30);
+		ctx.quadraticCurveTo(shape.x+(shape.w*0.4),shape.y+(shape.h*0.87),shape.x,shape.y+(shape.h*0.7),30);
 		ctx.lineTo(shape.x,shape.y+(shape.h*0.4));
-		
-		ctx.moveTo(shape.x+(shape.w*0.235),shape.y+(shape.h*0.47));
+		ctx.moveTo(shape.x,shape.y+(shape.h*0.4));
+		ctx.quadraticCurveTo(shape.x,shape.y+(shape.h*0.4),shape.x+(shape.w*0.27),shape.y+(shape.h*0.47),30);
 		ctx.quadraticCurveTo(shape.x+(shape.w*0.5),shape.y+(shape.h*0.25),shape.x+shape.w,shape.y+(shape.h*0.23),30);
 		ctx.lineTo(shape.x+shape.w,shape.y);
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -1148,28 +1335,28 @@ var leftBendArrorw = {
 	draw : function(ctx, shape)
 	{
 		ctx.beginPath();
-		ctx.moveTo(shape.x,shape.y);
-		//ctx.lineTo(shape.x,shape.y+(shape.h*0.9));
-		ctx.quadraticCurveTo(shape.x+(shape.w*0.4),shape.y,shape.x+shape.w,shape.y+(shape.h*0.4),40);
+
+		ctx.moveTo(shape.x+shape.w,shape.y+(shape.h*0.6));
+
+		ctx.quadraticCurveTo(shape.x+(shape.w*0.4),shape.y+(shape.h*0.25),shape.x,shape.y+(shape.h*0.25),40);
+		ctx.lineTo(shape.x,shape.y);
+
+		ctx.quadraticCurveTo(shape.x+(shape.w*0.4),shape.y,shape.x+shape.w,shape.y+(shape.h*0.37),40);
 		ctx.lineTo(shape.x+shape.w,shape.y+(shape.h*0.6));
 		ctx.quadraticCurveTo(shape.x+(shape.w*0.6),shape.y+(shape.h*0.9),shape.x+(shape.w*0.25),shape.y+(shape.h*0.9),40);
 		ctx.lineTo(shape.x+(shape.w*0.25),shape.y+shape.h);
 		ctx.lineTo(shape.x,shape.y+(shape.h*0.75));
 		ctx.lineTo(shape.x+(shape.w*0.25),shape.y+(shape.h*0.5));
 		ctx.lineTo(shape.x+(shape.w*0.25),shape.y+(shape.h*0.6));
-		ctx.quadraticCurveTo(shape.x+(shape.w*0.6),shape.y+(shape.h*0.6),shape.x+(shape.w*0.73),shape.y+(shape.h*0.45),40);
-		ctx.moveTo(shape.x,shape.y);
-		ctx.lineTo(shape.x,shape.y+(shape.h*0.25));
-		ctx.quadraticCurveTo(shape.x+(shape.w*0.4),shape.y+(shape.h*0.25),shape.x+shape.w,shape.y+(shape.h*0.6),40);
+		ctx.quadraticCurveTo(shape.x+(shape.w*0.6),shape.y+(shape.h*0.6),shape.x+(shape.w*0.73),shape.y+(shape.h*0.46),40);
 		
-
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!
 		ctx.fill();	
 		ctx.stroke();
 		ctx.closePath();
 
 	}
 }
+
 
 var explainRightArrorw = {
 	draw : function(ctx, shape)
@@ -1189,7 +1376,7 @@ var explainRightArrorw = {
 		ctx.lineTo(shape.x,shape.y);
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
@@ -1222,9 +1409,9 @@ var explainRightLeftArrorw = {
 		ctx.lineTo(shape.x+(shape.w*0.25),shape.y);
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!								
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!								
 		
-		//ctx.fill();
+		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
 
@@ -1271,10 +1458,10 @@ var explainRightLeftUpDownArrorw = {
 
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!								
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!								
 		
 		
-		//ctx.fill();
+		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
 
@@ -1301,10 +1488,10 @@ var plus = {
 		
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!								
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!								
 		
 		
-		//ctx.fill();
+		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
 
@@ -1324,10 +1511,10 @@ var minus = {
 		
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!								
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!								
 		
 		
-		//ctx.fill();
+		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
 
@@ -1354,10 +1541,10 @@ var multiple = {
 		
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!								
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!								
 		
 		
-		//ctx.fill();
+		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
 
@@ -1384,7 +1571,7 @@ var division = {
 		console.log((shape.x+(shape.w*0.5))-(shape.x+(shape.w*0.45)));
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!								
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!								
 		
 		
 		ctx.fill();
@@ -1413,9 +1600,9 @@ var equal = {
 		
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!								
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!								
 		
-		//ctx.fill();
+		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
 
@@ -1452,7 +1639,7 @@ var notEqual = {
 	
 		
 
-		//arcTo¸¦ »ç¿ëÇÏ¿© °î¼± Ç¥Çö!!
+		//arcToÂ¸Â¦ Â»Ã§Â¿Ã«Ã‡ÃÂ¿Â© Â°Ã®Â¼Â± Ã‡Â¥Ã‡Ã¶!!
 		ctx.fill();
 		ctx.stroke();
 		ctx.closePath();
