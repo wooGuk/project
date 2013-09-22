@@ -13,7 +13,7 @@ function shape(){
 	this.strokeColor = null;
 	this.lineWidth = 2;
 	this.lineCap = "round";
-	this.text = "";
+	this.textValue = [];
 	this.selectionHandles = [];
 }
 
@@ -31,6 +31,11 @@ shape.prototype = {
 		ctx.lineWidth = this.lineWidth;
 		ctx.lineCap = this.lineCap;
 		eval(this.name).draw(ctx, this);
+		if($(this.textValue).length){
+			for(var i in this.textValue){
+				ctx.fillText(this.textValue[i], this.x, this.y+(20*i));
+			}
+		}
 	}
 	// 0  1  2
     // 3     4

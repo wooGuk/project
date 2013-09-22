@@ -92,7 +92,7 @@ function preLoad(){
 			tempS.sy = parseInt(boxList[j]["box_sy"]);
 			tempS.ex = parseInt(boxList[j]["box_ex"]);
 			tempS.ey = parseInt(boxList[j]["box_ey"]);
-			tempS.text = boxList[j]["box_text"];
+			tempS.textValue = boxList[j]["box_text_value"].split("|");
 			tempS.alpha = boxList[j]["box_alpha"];
 			tempS.fillColor = boxList[j]["box_fill_color"];
 			tempS.strokeColor = boxList[j]["box_stroke_color"];
@@ -173,7 +173,7 @@ socket.on("modifyBox", function (data){
 	tempS.sy = data.box_sy;
 	tempS.ex = data.box_ex;
 	tempS.ey = data.box_ey;
-	tempS.text = data.box_text;
+	tempS.textValue = data.box_text_value.split("|");
 	tempS.alpha = data.box_alpha;
 	tempS.fillColor = data.box_fill_color;
 	tempS.strokeColor = data.box_stroke_color;
@@ -204,7 +204,7 @@ socket.on("addBoxToParent", function (data) {
 	tempS.sy = data.box_sy;
 	tempS.ex = data.box_ex;
 	tempS.ey = data.box_ey;
-	tempS.text = data.box_text;
+	tempS.textValue = data.box_text_value.split("|");
 	tempS.alpha = data.box_alpha;
 	tempS.fillColor = data.box_fill_color;
 	tempS.strokeColor = data.box_stroke_color;

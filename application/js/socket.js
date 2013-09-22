@@ -65,10 +65,10 @@ io.sockets.on('connection', function(socket) {
 				, box_stroke_color : data.box_stroke_color
 				, box_line_width : data.box_line_width
 				, box_line_cap : data.box_line_cap
-				, box_text : data.box_text
+				, box_text_value : data.box_text_value
 			}, data.box_idx, data.canvas_idx, data.project_idx], function(err, res, field){
 			if(err){
-				console.log("에러 발생."); return;
+				console.log("수정 에러 발생."); return;
 			}
 		});
 		

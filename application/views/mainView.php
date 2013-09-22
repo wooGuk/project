@@ -15,7 +15,6 @@
 <script src="../application/js/shape.js"></script>
 <script src="../application/js/canvas.js"></script>
 
-<script src="http://203.253.20.234:8005/socket.io/socket.io.js"></script>
 <link rel="Stylesheet" type="text/css" href="../application/js/figureButton.css" />
 <script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
 
@@ -69,6 +68,31 @@ $(function(){
 	var resize_flag = 0;
 	var resize_box = -1;
 	var resize_point = -1;
+
+	$("#mainCanvas").dblclick(function(e){
+		var i = 0;
+		var c;
+		for(var n=0;n<mainC.selList.length;n++)
+			if(mainC.selList[n]==1) {
+				i++; 
+				c=n;
+			}
+		if(i==1) {
+			var tmp = "";
+			if($(mainC.boxes[c].textValue)) {				
+				tmp=mainC.boxes[c].textValue[0];
+				for(var n=1;n<mainC.boxes[c].textValue.length;n++)
+				{
+					tmp += "\n";
+					tmp += mainC.boxes[c].textValue[n];
+				}
+			}
+			// var tmp = mainC.boxes[c].textValue;
+			$("#inputArea").text(tmp);
+			$("#inputArea").show();
+			$("#inputArea").focus();
+		}
+	});
 
 	/*gs없애고 selList가 1일 때 gs로 draw*/
 	$(document).mousemove(function(e){
@@ -398,7 +422,7 @@ $(function(){
 				, box_stroke_color : box.strokeColor
 				, box_line_width : box.lineWidth
 				, box_line_cap : box.lineCap
-				, box_text : box.text
+				, box_text_value : box.textValue.join("|")
 			});
 
 			mainC.select($(mainC.boxes).length-1);
@@ -410,30 +434,6 @@ $(function(){
 		intervalDraw();
 		console.log(2);
 	});
-
-	function updateBox(i){
-		var box = mainC.boxes[i];
-		parent.socket.emit("modifyBox", {
-			box_idx : i
-			, canvas_idx : parent.socket.parentNum
-			, project_idx : parent.project_idx
-			, box_name : box.name
-			, box_x : box.x
-			, box_y : box.y
-			, box_w : box.w
-			, box_h : box.h
-			, box_sx : box.sx
-			, box_sy : box.sy
-			, box_ex : box.ex
-			, box_ey : box.ey
-			, box_alpha : box.alpha
-			, box_fill_color : box.fillColor
-			, box_stroke_color : box.strokeColor
-			, box_line_width : box.lineWidth
-			, box_line_cap : box.lineCap
-			, box_text : box.text
-		});
-	}
 	
 	$("#fillColorPicker").wColorPicker({
 		mode: "click",
@@ -476,6 +476,43 @@ $(function(){
 			}
 		}
 	});
+
+	$("#textButton").click(function(e){
+		$("#inputArea").show();
+	});
+
+	$("#inputArea").bind('input propertychange', function() {
+		var tmp;
+		value = $("#inputArea").val();
+		for(var i=0;i<mainC.selList.length;i++)
+			if(mainC.selList[i]==1)
+			{
+				var m=0;
+				mainC.gs[i].textValue[0]="";
+
+				var valueLength = value.length;
+				for(var s=0;s<valueLength;s++) {
+					if(value.charAt(s)=="\n")
+					{
+						m++;
+						mainC.gs[i].textValue[m]="";				
+						// tmp="";
+					}
+					else
+						mainC.gs[i].textValue[m]+=value.charAt(s);					
+				}
+				parentC.boxes[i].textValue=mainC.gs[i].textValue;
+				getBoxFromparent(i);
+				updateBox(i);
+				intervalDraw();
+			}		
+	});
+
+	$("#inputArea").focusout(function(e){
+		$("#inputArea").text("");
+		$("#inputArea").hide();
+		$("#mainCanvas").focus();
+	});
 });
 
 var shapeName = "select";
@@ -507,7 +544,7 @@ function copyStyle(a, b){
 	a.strokeColor = b.strokeColor;
 	a.lineWidth = b.lineWidth;
 	a.lineCap = b.lineCap;
-	a.text = b.text;
+	a.textValue = b.textValue;
 }
 
 function updateBox(i){
@@ -530,7 +567,7 @@ function updateBox(i){
 		, box_stroke_color : box.strokeColor
 		, box_line_width : box.lineWidth
 		, box_line_cap : box.lineCap
-		, box_text : box.text
+		, box_text_value : box.textValue.join("|")
 	});
 }
 
@@ -617,7 +654,7 @@ function submitBox(s){
 		,strokeColor : s.strokeColor
 		,lineWidth : s.lineWidth
 		,lineCap : s.lineCap
-		,text : s.text
+		,textValue : s.textValue
 	}
 	return box;
 }
@@ -842,9 +879,10 @@ $(function(){
 </head>
 <body>
 	<div id="btnGroup" style="min-width:640px;height:30px;background-color:#87CEEB;">
-		<span><a type="button" class="btn" onclick="setShape('select');"></a></span>
-		<span><a type="button" class="btndraw">aaa</a></span>
-		<span><a type="button" class="btnLine" onclick="setShape('line');"></a></span>
+		<span><a type="button" class="btn" onclick="setShape('select');">선택해염</a></span>
+		<span><a type="button" class="btndraw">도형도형</a></span>
+		<span><a type="button" class="btnLine" onclick="setShape('line');">선선선</a></span>
+		<span><a type="button" id="textButton" class="btnLine" onclick="setShape('text');">텍스트트트</a></span>
 		<span><img src="../application/js/img/brushtext.png" style="height:30px"/></span>
 		<input type="text" id="brush_size" value="1" style="position:absolute; top:5px; width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
 		<span><img src="../application/js/img/alpha.png" style="position:absolute; top:0px; left:320px; height:30px"/></span>
@@ -997,7 +1035,9 @@ $(function(){
 		</table>
 	</div>
 
-	<div id="textDiv" style="position:absolute; top:30px; left:0px; z-index:3;"></div>
-	<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;"></canvas>
+	<!-- <div id="textDiv" style="position:absolute; top:30px; left:0px; z-index:3;"></div> -->
+	<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;"></canvas>	
+	<div><textarea id="inputArea" cols="75" rows="5"></textarea></div>
+
 </body>
 </html>
