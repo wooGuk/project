@@ -14,34 +14,28 @@
 <style>
 	#projectListTable tr { color:blue; }
 </style>
+
+<link rel="stylesheet" href="application/js/common/jquery-ui.css" />
 <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 <link href="application/js/bootstrap-2.3.2/docs/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet"/>
 <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
- <style type="text/css">
-      body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
+<style type="text/css">
+	body { padding-top: 40px; padding-bottom: 40px; }
+	.sidebar-nav { padding: 9px 0; }
 
-      @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-   </style>
-
-<link rel="stylesheet" href="application/js/common/jquery-ui.css" />
-<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-<script src="assets/js/jquery.js"></script>
+	@media (max-width: 980px) {
+		/* Enable use of floated navbar text */
+		.navbar-text.pull-right {
+			float: none;
+			padding-left: 5px;
+			padding-right: 5px;
+			}
+		}
+</style>
 <script src="application/js/common/jquery-2.0.2.min.js"></script>
 <script src="application/js/common/jquery-ui.min.js"></script>
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
 <script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-transition.js"></script>
 <script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-alert.js"></script>
 <script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-modal.js"></script>
@@ -117,7 +111,7 @@ function addPJ(){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="#">Project List</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link">Username</a>

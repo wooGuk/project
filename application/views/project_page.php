@@ -12,6 +12,12 @@
 <style type="text/css">
 	html { height:100%; margin:0; padding:0; }
 	body { height:100%; margin:0; padding:0; }
+</style>
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link href="application/js/bootstrap-2.3.2/docs/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet"/>
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
+
+<style type="text/css">
 	body { padding-top: 40px; padding-bottom: 40px; }
 	.sidebar-nav { padding: 9px 0; }
 
@@ -30,8 +36,10 @@
 <script src="application/js/shapeList.js"></script>
 <script src="application/js/shape.js"></script>
 <script src="application/js/canvas.js"></script>
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
 <script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
+
 
 <!-- 부트스트랩 -->
 <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
