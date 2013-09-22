@@ -879,14 +879,14 @@ $(function(){
 </head>
 <body>
 	<div id="btnGroup" style="min-width:640px;height:30px;background-color:#87CEEB;">
-		<span><a type="button" class="btn" onclick="setShape('select');">선택해염</a></span>
-		<span><a type="button" class="btndraw">도형도형</a></span>
-		<span><a type="button" class="btnLine" onclick="setShape('line');">선선선</a></span>
+		<span><a type="button" class="btn" onclick="setShape('select');" style="position:absolute; top:1px; left:0px;"></a></span>
+		<span><a type="button" class="btndraw" style="position:absolute; top:0px; left:50px;"></a></span>
+		<span><a type="button" class="btnLine" onclick="setShape('line');" style="position:absolute; top:1px; left:100px;"></a></span>
 		<span><a type="button" id="textButton" class="btnLine" onclick="setShape('text');">텍스트트트</a></span>
-		<span><img src="../application/js/img/brushtext.png" style="height:30px"/></span>
-		<input type="text" id="brush_size" value="1" style="position:absolute; top:5px; width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
-		<span><img src="../application/js/img/alpha.png" style="position:absolute; top:0px; left:320px; height:30px"/></span>
-		<input type="text" id="opacity" value="1" style="position:absolute; top:5px; left:420px;width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
+		<span><img src="../application/js/img/brushtext.png" style="position:absolute; top:1px; left:150px; height:30px"/></span>
+		<input type="text" id="brush_size" value="1" style="position:absolute; top:2px; left:250px; width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
+		<span><img src="../application/js/img/alpha.png" style="position:absolute; top:0px; left:310px; height:30px"/></span>
+		<input type="text" id="opacity" value="1" style="position:absolute; top:5px; left:410px;width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
 		<div style="display:inline;">
 			<div><img src="../application/js/img/linecolor.png" style="position:absolute; top:1px; left:465px; height:30px"> </div>
 			<div id="strokeColorPicker" style="position:absolute; top:5px; left:520px; display:inline;"></div>
