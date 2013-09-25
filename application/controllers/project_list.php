@@ -48,7 +48,12 @@ class Project_list extends CI_Controller {
 
 		$param = new stdClass();
 		$param->list = json_decode($result);
+
+		$nav_param = new stdClass();
+		$nav_param->name = "프로젝트";
+		$nav_param->user_name = $this->session->userdata('user_name');
 		
+		$this->load->view('navigator', $nav_param);
 		$this->load->view('project_list_page', $param);
 	}
 

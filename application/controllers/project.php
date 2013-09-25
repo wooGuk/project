@@ -26,10 +26,13 @@ class Project extends CI_Controller {
 
 	public function index(){
 		$project_idx = $this->input->post('project_idx', true);
+		$project_name = $this->input->post('project_name', true);
+
 		if(!$project_idx){
 			redirect('/login', 'refresh');
 		}
 		$this->session->set_userdata('project_idx', $project_idx);
+		$this->session->set_userdata('project_name', $project_name);
 
 		$qParam = new stdClass();
 		$qParam->project_idx = $this->session->userdata('project_idx');
@@ -45,6 +48,11 @@ class Project extends CI_Controller {
 		}
 		$param->canvasList = json_encode($canvasListArray);
 
+		$nav_param = new stdClass();
+		$nav_param->name = $project_name;
+		$nav_param->user_name = $this->session->userdata('user_name');
+
+		$this->load->view('navigator', $nav_param);
 		$this->load->view('project_page', $param);
 	}
 

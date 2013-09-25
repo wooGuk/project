@@ -1036,8 +1036,14 @@ $(function(){
 	</div>
 
 	<!-- <div id="textDiv" style="position:absolute; top:30px; left:0px; z-index:3;"></div> -->
-	<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;"></canvas>	
-	<div><textarea id="inputArea" cols="75" rows="5"></textarea></div>
+	<div style="padding-top:100px; padding-left:100px;">
+		<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;">
+			이 글이 보이시는 경우 브라우저가 캔버스 기능을 지원하지 않습니다.
+		</canvas>
+	</div>
+	<div style="padding-top:30px; padding-left:100px;">
+		<textarea id="inputArea" cols="88" rows="5"></textarea>
+	</div>
 
 </body>
 </html>
