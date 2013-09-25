@@ -601,7 +601,7 @@ function loadCanvas(canvasNum){
 
 	// 고스트 캔버스 선택
 	var position = $("#mainCanvas").position();
-	var gCanvas = $("<canvas id='gcanvas' width='640' height='480' style='position:absolute; pad z-index:-1;');'>This text is displayed if your browser does not support HTML5 Canvas.</canvas>");
+	var gCanvas = $("<canvas id='gcanvas' width='640' height='480' style='position:absolute; z-index:-1;');'>This text is displayed if your browser does not support HTML5 Canvas.</canvas>");
 	gCanvas.css("top", position.top);
 	gCanvas.css("left", position.left);
 	gCanvas.insertAfter("#mainCanvas");
@@ -632,7 +632,6 @@ function clearSelList(){
 /* 후에 validation을 줄것인지? 의논해봅시다. 아직은 버벅거리지 않음. */
 function intervalDraw(){
 	console.log("draw");
-	$("#textDiv").html("");
 	clear(mainC.ctx);
 	mainC.draw();
 	clear(parentC.ctx);
@@ -1035,7 +1034,6 @@ $(function(){
 		</table>
 	</div>
 
-	<div id="textDiv" style="position:absolute; top:30px; left:0px; z-index:3;"></div>
 	<div style="padding-top:100px; padding-left:100px;">
 		<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;">
 			이 글이 보이시는 경우 브라우저가 캔버스 기능을 지원하지 않습니다.

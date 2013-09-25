@@ -6,6 +6,7 @@
 
 				<?php if($name!="프로젝트"):?>
 				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
 				<?php endif;?>
 
 				<span class="icon-bar"></span>
@@ -18,6 +19,9 @@
 				<?php if($name!="프로젝트"):?>
 					<ul class="nav">
 						<li class="active"><a href="/CI/project_list">프로젝트 리스트 보기</a></li>
+					</ul>
+					<ul class="nav">
+						<li class="active"><a href="/CI/slide_show">슬라이드쇼 보기</a></li>
 					</ul>
 				<?php endif;?>
 			</div><!--/.nav-collapse -->
