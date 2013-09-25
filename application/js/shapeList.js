@@ -1,133 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var line = {
 	draw : function(ctx, shape){
 		ctx.beginPath();
@@ -1676,28 +1546,16 @@ var cloud = {
 var text = {
 	draw : function(ctx, shape){
 		ctx.beginPath();
-
 		ctx.moveTo(shape.x, shape.y);
 		ctx.lineTo(shape.x+shape.w, shape.y);
 		ctx.lineTo(shape.x+shape.w, shape.y+shape.h);
 		ctx.lineTo(shape.x, shape.y+shape.h);
 		ctx.lineTo(shape.x, shape.y);
-
+		ctx.font="20px serif";
+		ctx.fillStyle="#000000"	
+		ctx.fill();
 		ctx.stroke();
+		ctx.fillStyle="#FFFFFF";
 		ctx.closePath();
-
-		var t = $("<textarea>");
-		t.css("position", "absolute");
-		t.css("top", shape.sy);
-		t.css("left", shape.sx);
-		t.css("width", shape.w);
-		t.css("height", shape.h);
-		t.text(shape.text);
-
-		t.focusout(function() {
-			shape.text = $(this).text();
-		});
-
-		$("#textDiv").append(t);
-   }
+	}
 }

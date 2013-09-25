@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -118,7 +119,7 @@ function addPJ(){
       </div>
     </div>
 
-	<table id="projectListTable">
+	<table id="projectListTable" align="center">
 		<col width=200>
 		<tr id="showAddPJDiv"><td>+</td></tr>
 <?php

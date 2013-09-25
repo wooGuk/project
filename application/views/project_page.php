@@ -73,7 +73,7 @@ var nowC;
 function preLoad(){
 	for(i=0; i<canvasList.length; i++){
 		var canvasNum = canvasList[i]['canvas_idx'];
-		var makeCanvas = $("<canvas id='canvas"+canvasNum+"' canvasNum='"+canvasNum+"' width='640' height='480' style='border:1px #ddd solid;width:280px;height:200px;' onclick='loadCanvas("+canvasNum+");'>This text is displayed if your browser does not support HTML5 Canvas.</canvas>");
+		var makeCanvas = $("<canvas id='canvas"+canvasNum+"' canvasNum='"+canvasNum+"' width='640' height='480' style='border:1px #ddd solid; width:280px;height:200px;' onclick='loadCanvas("+canvasNum+");'>This text is displayed if your browser does not support HTML5 Canvas.</canvas>");
 		makeCanvas.appendTo("#canvasView");
 
 		var tempC = new canvas();
@@ -92,7 +92,7 @@ function preLoad(){
 			tempS.sy = parseInt(boxList[j]["box_sy"]);
 			tempS.ex = parseInt(boxList[j]["box_ex"]);
 			tempS.ey = parseInt(boxList[j]["box_ey"]);
-			tempS.text = boxList[j]["box_text"];
+			tempS.textValue = boxList[j]["box_text_value"].split("|");
 			tempS.alpha = boxList[j]["box_alpha"];
 			tempS.fillColor = boxList[j]["box_fill_color"];
 			tempS.strokeColor = boxList[j]["box_stroke_color"];
@@ -173,7 +173,7 @@ socket.on("modifyBox", function (data){
 	tempS.sy = data.box_sy;
 	tempS.ex = data.box_ex;
 	tempS.ey = data.box_ey;
-	tempS.text = data.box_text;
+	tempS.textValue = data.box_text_value.split("|");
 	tempS.alpha = data.box_alpha;
 	tempS.fillColor = data.box_fill_color;
 	tempS.strokeColor = data.box_stroke_color;
@@ -204,7 +204,7 @@ socket.on("addBoxToParent", function (data) {
 	tempS.sy = data.box_sy;
 	tempS.ex = data.box_ex;
 	tempS.ey = data.box_ey;
-	tempS.text = data.box_text;
+	tempS.textValue = data.box_text_value.split("|");
 	tempS.alpha = data.box_alpha;
 	tempS.fillColor = data.box_fill_color;
 	tempS.strokeColor = data.box_stroke_color;
