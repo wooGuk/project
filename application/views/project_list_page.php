@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -69,6 +68,7 @@ $(function(){
 			$("#addPJDiv").dialog("open");
 		}else{
 			$("#project_idx").val($(this).attr("id"));
+			$("#project_name").val($(this).attr("pjname"));
 			$("#loadProject").submit();
 		}
 	});
@@ -76,7 +76,7 @@ $(function(){
 
 function addList(project_idx, project_name){
 	htmlStr = "<tr id='"+project_idx+"'><td>"+project_name+"</td></tr>";
-	$("#projectListTable").append(htmlStr);
+	$("#showAddPJDiv").after(htmlStr);
 }
 
 function addPJ(){
@@ -96,29 +96,6 @@ function addPJ(){
 
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">Project List</a>
-          <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
-            </p>
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
 	<table id="projectListTable" align="center">
 		<col width=200>
 		<tr id="showAddPJDiv"><td>+</td></tr>
@@ -128,7 +105,7 @@ function addPJ(){
 		foreach($list as $row)
 		{
 ?>
-		<tr id="<?=$row->project_idx;?>"><td><?=$row->project_name;?></td></tr>
+		<tr id="<?=$row->project_idx;?>" pjname="<?=$row->project_name;?>"><td><?=$row->project_name;?></td></tr>
 <?php
 		}
 	}
@@ -140,6 +117,7 @@ function addPJ(){
 	</div>
 	<form id="loadProject" action="project" method="post">
 		<input type="hidden" id="project_idx" name="project_idx" />
+		<input type="hidden" id="project_name" name="project_name" />
 	</form>
 </body>
 </html>

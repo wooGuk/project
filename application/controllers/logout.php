@@ -24,8 +24,12 @@ class Logout extends CI_Controller {
 	}
 
 	public function index(){
+		/*
 		$data['logout'] = $this;
 		$this->load->view('logout_page');
+		*/
+		$this->session->sess_destroy();
+		redirect('/login', 'refresh');
 	}
 
 	public function logoutLogic() {
