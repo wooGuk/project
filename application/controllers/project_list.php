@@ -53,8 +53,10 @@ class Project_list extends CI_Controller {
 		$nav_param->name = "프로젝트";
 		$nav_param->user_name = $this->session->userdata('user_name');
 		
+		$this->load->view('start');
 		$this->load->view('navigator', $nav_param);
 		$this->load->view('project_list_page', $param);
+		$this->load->view('end');
 	}
 
 	function add_project(){

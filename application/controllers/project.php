@@ -52,8 +52,10 @@ class Project extends CI_Controller {
 		$nav_param->name = $project_name;
 		$nav_param->user_name = $this->session->userdata('user_name');
 
+		$this->load->view('start');
 		$this->load->view('navigator', $nav_param);
 		$this->load->view('project_page', $param);
+		$this->load->view('end');
 	}
 
 	function mainView(){

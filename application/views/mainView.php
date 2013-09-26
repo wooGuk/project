@@ -39,7 +39,7 @@
 <script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
 
 <script>
-
+/*
 $(window).resize(function(){
 	pWidth = $(parent.mainViewFrame).width();
 	pHeight = $(parent.mainViewFrame).height();
@@ -52,16 +52,18 @@ $(window).resize(function(){
 	//$("#mainCanvas").css("zoom", r);
 	//$("#gcanvas").css("zoom", r);
 });
-
+*/
 $(function(){
 	parent.setRoom();
 	parent.preLoad();
 
+	/*
 	pWidth = $(parent.mainViewFrame).width();
 	pHeight = $(parent.mainViewFrame).height();
 
 	$("body").width(pWidth);
 	$("body").height(pHeight-30);
+	*/
 
 	var sx, sy, ex, ey;
 	var down_flag = 0;

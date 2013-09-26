@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lang="kor">
-<head>
-	<meta charset="utf-8">
-	<title>Project List</title>
 <style>
 	#projectListTable tr { color:blue; }
 </style>
@@ -94,8 +89,6 @@ function addPJ(){
 }
 </script>
 
-</head>
-<body>
 	<table id="projectListTable" align="center">
 		<col width=200>
 		<tr id="showAddPJDiv"><td>+</td></tr>
@@ -119,5 +112,3 @@ function addPJ(){
 		<input type="hidden" id="project_idx" name="project_idx" />
 		<input type="hidden" id="project_name" name="project_name" />
 	</form>
-</body>
-</html>

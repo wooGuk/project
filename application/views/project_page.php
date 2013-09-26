@@ -1,51 +1,45 @@
-<!DOCTYPE html>
-<html lang="kor">
-<head>
-	<meta charset="utf-8">
-	<title>Project List</title>
+<title>Project</title>
 
-	<!-- 부트스트랩 -->
-	<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
-	<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+<!-- 부트스트랩 -->
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
-	<link rel="Stylesheet" type="text/css" href="application/js/bubble.css" />
-	<style type="text/css">
-		html { height:100%; margin:0; padding:0; }
-		body { height:100%; margin:0; padding:0; }
+<link rel="Stylesheet" type="text/css" href="application/js/bubble.css" />
+<style type="text/css">
+	html { margin:0; padding:0; }
+	body {  padding:0; padding-top: 40px; margin:0; }
+	.sidebar-nav { padding: 9px 0; }
 
-		body { padding-top: 40px; padding-bottom: 40px; }
-		.sidebar-nav { padding: 9px 0; }
-
-		@media (max-width: 980px) {
-			/* Enable use of floated navbar text */
-			.navbar-text.pull-right {
-				float: none;
-				padding-left: 5px;
-				padding-right: 5px;
-				}
+	@media (max-width: 980px) {
+		/* Enable use of floated navbar text */
+		.navbar-text.pull-right {
+			float: none;
+			padding-left: 5px;
+			padding-right: 5px;
 			}
-	</style>
+		}
+</style>
 
-	<!-- 부트스트랩 -->
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-transition.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-alert.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-modal.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-dropdown.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-scrollspy.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tab.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tooltip.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-popover.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-button.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-collapse.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-carousel.js"></script>
-	<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
+<script src="application/js/common/jquery-2.0.2.min.js"></script>
+<script src="application/js/shapeList.js"></script>
+<script src="application/js/shape.js"></script>
+<script src="application/js/canvas.js"></script>
 
-	<script src="application/js/common/jquery-2.0.2.min.js"></script>
-	<script src="application/js/shapeList.js"></script>
-	<script src="application/js/shape.js"></script>
-	<script src="application/js/canvas.js"></script>
+<script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
 
-	<script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
+<!-- 부트스트랩 -->
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-transition.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-alert.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-modal.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-dropdown.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-scrollspy.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tab.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-tooltip.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-popover.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-button.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-collapse.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-carousel.js"></script>
+<script src="application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
 
 <script>
 
@@ -54,7 +48,6 @@ $(window).resize(function(){
 	wHeight = $(window).height();
 	$("#rightTab").width(wWidth-320);
 	$("#mainViewFrame").width(wWidth-320);
-	$("#mainViewFrame").height(wHeight);
 });
 
 var canvases = [];
@@ -301,38 +294,34 @@ function colorChange()
 
 </script>
 
-</head>
-<body>
-	<div style="width:100%;height:100%;overflow:hidden;">
-		<div id="leftTab" style="width:320px;height:100%;float:left; background-color:#B0E0E6;overflow-y:scroll;">
-			<div class="well sidebar-nav" style="height:30px; background-color:#E0FFFF;">
-				<ul class="nav nav-list">
-					<li class="nav-header" style="font-weight:bold; color:#1E90FF;">프레젠테이션 리스트</li>
-				</ul>
-			</div>
-			<div id="canvasView" style="text-align:center; padding:7px;"></div>
-			<div style="text-align:center; padding:7px; border:1px #ddd solid; width:280px; height:200px;" onclick="addCanvas();">+</div>
+<div style="width:100%;height:100%;overflow:hidden;">
+	<div id="leftTab" style="width:320px;height:100%;float:left; background-color:#B0E0E6;overflow-y:scroll;">
+		<div class="well sidebar-nav" style="height:30px; background-color:#E0FFFF;">
+			<ul class="nav nav-list">
+				<li class="nav-header" style="font-weight:bold; color:#1E90FF;">프레젠테이션 리스트</li>
+			</ul>
 		</div>
-		<div id="rightTab" style="height:100%;float:left;">
-			<iframe id="mainViewFrame" src="project/mainView" frameborder="0" scrolling="yes" allowTransparency="false" style="background-color:#eee;"></iframe>
-		</div>
+		<div id="canvasView" style="text-align:center; padding:7px;"></div>
+		<div style="text-align:center; padding:7px; border:1px #ddd solid; width:280px; height:200px;" onclick="addCanvas();">+</div>
 	</div>
-	<!-- 푸쉬알림 -->
-	<div class="bubble" id="pushpush" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; visibility: hidden;">
-		<p class="lab">
-			메시지가 도착했습니다.
-		</p>
+	<div id="rightTab" style="height:100%;float:left;">
+		<iframe id="mainViewFrame" src="project/mainView" frameborder="0" scrolling="yes" allowTransparency="false" style="background-color:#eee;"></iframe>
 	</div>
-	<!-- 채팅창 -->
-	<div style="position:absolute; clear:left; float:right; right:18px; bottom:0px;">
-		<input id="chat-button" type="button" onclick="layer_popup()" style ="background:red; filiter:alpha(opacity=10); opacity:0.5; -moz-opacity:0.5;" value="채팅">
+</div>
+<!-- 푸쉬알림 -->
+<div class="bubble" id="pushpush" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; visibility: hidden;">
+	<p class="lab">
+		메시지가 도착했습니다.
+	</p>
+</div>
+<!-- 채팅창 -->
+<div style="position:absolute; clear:left; float:right; right:18px; bottom:0px;">
+	<input id="chat-button" type="button" onclick="layer_popup()" style ="background:red; filiter:alpha(opacity=10); opacity:0.5; -moz-opacity:0.5;" value="채팅">
+</div>
+<div id="chat" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; border:double; width:300px; height:250px; visibility: hidden; background-color:white;">
+	<div id ="message_list" style="position:absolute; width:300px; height:200px; overFlow:auto;"></div>
+	<div id="inputText" style="position:absolute; float:left; width:300px; height:50px; left:0; bottom:0px;">
+		<input id = "input" onkeydown="if (event.keyCode == 13) send()" type="message">
+		<button onclick="javascript:send();setRoom();" type="button">보내기</button>
 	</div>
-	<div id="chat" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; border:double; width:300px; height:250px; visibility: hidden; background-color:white;">
-		<div id ="message_list" style="position:absolute; width:300px; height:200px; overFlow:auto;"></div>
-		<div id="inputText" style="position:absolute; float:left; width:300px; height:50px; left:0; bottom:0px;">
-			<input id = "input" onkeydown="if (event.keyCode == 13) send()" type="message">
-			<button onclick="javascript:send();setRoom();" type="button">보내기</button>
-		</div>
-	</div>
-</body>
-</html>
+</div>
