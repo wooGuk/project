@@ -406,10 +406,13 @@ $(function(){
 			newShape.ey = ey;
 			box = parentC.addShape(newShape, 0);
 
+			var canvasImgStr = mainC.toDataURL.toString();
+
 			parent.socket.emit("addBox", {
 				box_idx : mainC.boxes.length-1
 				, canvas_idx : parent.socket.parentNum
 				, project_idx : parent.project_idx
+				, canvas_img : canvasImgStr
 				, box_name : box.name
 				, box_x : box.x
 				, box_y : box.y
@@ -551,10 +554,12 @@ function copyStyle(a, b){
 
 function updateBox(i){
 	var box = parentC.boxes[i];
+	var canvasImgStr = mainC.toDataURL.toString();
 	parent.socket.emit("modifyBox", {
 		box_idx : i
 		, canvas_idx : parent.socket.parentNum
 		, project_idx : parent.project_idx
+		, canvas_img : canvasImgStr
 		, box_name : box.name
 		, box_x : box.x
 		, box_y : box.y
@@ -659,6 +664,7 @@ function submitBox(s){
 	}
 	return box;
 }
+
 </script>
 
 
@@ -820,10 +826,13 @@ $(document).keydown(function(e){
 					mainC.unSelect(i);
 					getBoxFromparent();
 
+					var canvasImgStr = mainC.toDataURL.toString();
+
 					parent.socket.emit("delBox", {
 						box_idx : i
 						, canvas_idx : parent.socket.parentNum
 						, project_idx : parent.project_idx
+						, canvas_img : canvasImgStr
 					});
 
 					getBoxFromparent(-1);

@@ -20,13 +20,31 @@ class Slide_show extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('');
+		$this->load->model('m_project');
 	}
 
 	public function index(){
-		/*
-		$data['logout'] = $this;
-		$this->load->view('logout_page');
-		*/
+		$this->get_slide_image();
+	}
+
+	public function get_slide_image($i=null){
+		$project_idx = $this->input->post('project_idx');
+		
+		$qParam = new stdClass();
+		$qParam->project_idx =($i=='mobile') ? $project_idx : $this->session->userdata('project_idx');
+
+		$result = $this->m_project->getCanvasImg($qParam);
+
+		if($i=='mobile') {
+			if($result!=null)
+				echo $result;
+			else
+				echo 'empty';
+			return;
+		}
+
+		$param = new stdClass();
+		$param->imageList = json_decode($result);
+ 		$this->load->view('slide_show_page', $param);		
 	}
 }

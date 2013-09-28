@@ -39,6 +39,10 @@ function handler(req, res){
 io.sockets.on('connection', function(socket) {
 	this.roomNum = 0;
 
+	socket.on('echo1', function(data){
+		console.log(data);
+	});
+
 	socket.on('setRoom', function(roomNum){
 		socket.join(roomNum);
 		this.roomNum = roomNum;
@@ -71,6 +75,12 @@ io.sockets.on('connection', function(socket) {
 				console.log("수정 에러 발생."); return;
 			}
 		});
+
+		conn.query('update canvas set canvas_img = ? where canvas_idx = ? and project_idx = ?', [data.canvas_img, data.canvas_idx, data.project_idx], function(err, res, field){
+			if(err){
+				console.log("에러 발생"); return;
+			}
+		});
 		
 		console.log("roomNum : "+this.roomNum);
 		socket.broadcast.to(this.roomNum).emit("modifyBox", data);
@@ -82,6 +92,12 @@ io.sockets.on('connection', function(socket) {
 				console.log("에러 발생."); return;
 			}
 		});
+
+		conn.query('update canvas set canvas_img = ? where canvas_idx = ? and project_idx = ?', [data.canvas_img, data.canvas_idx, data.project_idx], function(err, res, field){
+			if(err){
+				console.log("에러 발생"); return;
+			}
+		});
 		socket.broadcast.to(this.roomNum).emit("addBoxToParent", data);
 	});
 
@@ -89,6 +105,12 @@ io.sockets.on('connection', function(socket) {
 		conn.query('delete from box where box_idx = ? and canvas_idx = ? and project_idx = ?', [data.box_idx, data.canvas_idx, data.project_idx], function(err, res, field){
 			if(err){
 				console.log("에러 발생."); return;
+			}
+		});
+
+		conn.query('update canvas set canvas_img = ? where canvas_idx = ? and project_idx = ?', [data.canvas_img, data.canvas_idx, data.project_idx], function(err, res, field){
+			if(err){
+				console.log("에러 발생"); return;
 			}
 		});
 		socket.broadcast.to(this.roomNum).emit("delBox", data);
@@ -106,6 +128,12 @@ io.sockets.on('connection', function(socket) {
 		conn.query('insert into canvas set ?', canvas, function(err, res, field){
 			if(err){
 				console.log("에러 발생."); return;
+			}
+		});
+
+		conn.query('update canvas set canvas_img = ? where canvas_idx = ? and project_idx = ?', [data.canvas_img, data.canvas_idx, data.project_idx], function(err, res, field){
+			if(err){
+				console.log("에러 발생"); return;
 			}
 		});
 		socket.broadcast.to(this.roomNum).emit("addCanvas", data);
