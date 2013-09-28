@@ -62,6 +62,19 @@ class M_project extends CI_Model {
 		$query = $this->db->get('box');
 		return $query->result_array();
 	}
+
+	function getCanvasImg($param) {
+		$this->db->select('canvas_img');
+		$this->db->where('project_idx', $param->project_idx);
+		$this->db->order_by('canvas_ord');
+		$query = $this->db->get('canvas');
+		if($query->num_rows()>0){
+			return json_encode($query->result());
+		}else{
+			return json_encode(array());
+		}
+	}
+
 }
 
 /* End of file welcome.php */
