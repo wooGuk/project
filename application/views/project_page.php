@@ -1,24 +1,14 @@
 <title>Project</title>
 
-<!-- 부트스트랩 -->
-<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
-<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-<link rel="Stylesheet" type="text/css" href="application/js/bubble.css" />
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
 <style type="text/css">
-	html { margin:0; padding:0; }
-	body {  padding:0; padding-top: 40px; margin:0; }
-	.sidebar-nav { padding: 9px 0; }
+	#projectListTable tr { color:blue; }
 
-	@media (max-width: 980px) {
-		/* Enable use of floated navbar text */
-		.navbar-text.pull-right {
-			float: none;
-			padding-left: 5px;
-			padding-right: 5px;
-			}
-		}
 </style>
+<link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="application/js/common/jquery-ui.css" />
+<link rel="Stylesheet" type="text/css" href="application/js/bubble.css" />
+
 
 <script src="application/js/common/jquery-2.0.2.min.js"></script>
 <script src="application/js/shapeList.js"></script>
@@ -46,8 +36,28 @@
 $(window).resize(function(){
 	wWidth = $(window).width();
 	wHeight = $(window).height();
+	console.log(wHeight);
+
+	if(wHeight > 704){
+
+		if(wWidth > 979){
+			$("#leftTab").height(wHeight-40);
+			$("#rightTab").height(wHeight-40);
+			$("#mainViewFrame").height(wHeight-40);
+		}else{
+			$("#leftTab").height(wHeight-52);
+			$("#rightTab").height(wHeight-52);
+			$("#mainViewFrame").height(wHeight-50);
+		}
+	}
+
 	$("#rightTab").width(wWidth-320);
-	$("#mainViewFrame").width(wWidth-320);
+	if(wWidth >= 1008){
+		$("#mainViewFrame").width(wWidth-337);
+	}else{
+		$("#mainViewFrame").width(720);
+	}
+
 });
 
 var canvases = [];
@@ -90,11 +100,32 @@ function preLoad(){
 		canvases[canvasNum] = tempC;
 		canvases[canvasNum].draw();
 	}
+	
 	wWidth = $(window).width();
 	wHeight = $(window).height();
+
+	if(wHeight > 704){
+		if(wWidth > 979){
+			$("#leftTab").height(wHeight-40);
+			$("#rightTab").height(wHeight-40);
+			$("#mainViewFrame").height(wHeight-40);
+		}else{
+			$("#leftTab").height(wHeight-52);
+			$("#rightTab").height(wHeight-52);
+			$("#mainViewFrame").height(wHeight-52);
+		}
+	}else{
+		$("#leftTab").height(704);
+		$("#rightTab").height(704);
+		$("#mainViewFrame").height(704);
+	}
+
 	$("#rightTab").width(wWidth-320);
-	$("#mainViewFrame").width(wWidth-320);
-	$("#mainViewFrame").height(wHeight-30);
+	if(wWidth >= 1008){
+		$("#mainViewFrame").width(wWidth-337);
+	}else{
+		$("#mainViewFrame").width(720);
+	}
 
 	$("#mainViewFrame").load(function(){
 		//if(mainViewFrame.parentC==null){
@@ -294,8 +325,8 @@ function colorChange()
 
 </script>
 
-<div style="width:100%;height:100%;overflow:hidden;">
-	<div id="leftTab" style="width:320px;height:100%;float:left; background-color:#B0E0E6;overflow-y:scroll;">
+<div style="overflow:hidden;">
+	<div id="leftTab" style="width:320px;float:left;background-color:#B0E0E6;overflow-y:scroll;">
 		<div class="well sidebar-nav" style="height:30px; background-color:#E0FFFF;">
 			<ul class="nav nav-list">
 				<li class="nav-header" style="font-weight:bold; color:#1E90FF;">프레젠테이션 리스트</li>
@@ -304,24 +335,26 @@ function colorChange()
 		<div id="canvasView" style="text-align:center; padding:7px;"></div>
 		<div style="text-align:center; padding:7px; border:1px #ddd solid; width:280px; height:200px;" onclick="addCanvas();">+</div>
 	</div>
-	<div id="rightTab" style="height:100%;float:left;">
-		<iframe id="mainViewFrame" src="project/mainView" frameborder="0" scrolling="yes" allowTransparency="false" style="background-color:#eee;"></iframe>
+	<div id="rightTab" style="float:left;overflow-x:scroll;">
+		<iframe id="mainViewFrame" src="project/mainView" frameborder="0" scrolling="no" allowTransparency="false" style="background-color:#eee;"></iframe>
 	</div>
-</div>
-<!-- 푸쉬알림 -->
-<div class="bubble" id="pushpush" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; visibility: hidden;">
-	<p class="lab">
-		메시지가 도착했습니다.
-	</p>
-</div>
-<!-- 채팅창 -->
-<div style="position:absolute; clear:left; float:right; right:18px; bottom:0px;">
-	<input id="chat-button" type="button" onclick="layer_popup()" style ="background:red; filiter:alpha(opacity=10); opacity:0.5; -moz-opacity:0.5;" value="채팅">
-</div>
-<div id="chat" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; border:double; width:300px; height:250px; visibility: hidden; background-color:white;">
-	<div id ="message_list" style="position:absolute; width:300px; height:200px; overFlow:auto;"></div>
-	<div id="inputText" style="position:absolute; float:left; width:300px; height:50px; left:0; bottom:0px;">
-		<input id = "input" onkeydown="if (event.keyCode == 13) send()" type="message">
-		<button onclick="javascript:send();setRoom();" type="button">보내기</button>
+
+
+	<!-- 푸쉬알림 -->
+	<div class="bubble" id="pushpush" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; visibility: hidden;">
+		<p class="lab">
+			메시지가 도착했습니다.
+		</p>
+	</div>
+	<!-- 채팅창 -->
+	<div style="position:absolute; clear:left; float:right; right:18px; bottom:0px;">
+		<input id="chat-button" type="button" onclick="layer_popup()" style ="background:red; filiter:alpha(opacity=10); opacity:0.5; -moz-opacity:0.5;" value="채팅">
+	</div>
+	<div id="chat" style="position:absolute; clear:left; float:right; right:18px; bottom:20px; border:double; width:300px; height:250px; visibility: hidden; background-color:white;">
+		<div id ="message_list" style="position:absolute; width:300px; height:200px; overFlow:auto;"></div>
+		<div id="inputText" style="position:absolute; float:left; width:300px; height:50px; left:0; bottom:0px;">
+			<input id = "input" onkeydown="if (event.keyCode == 13) send()" type="message">
+			<button onclick="javascript:send();setRoom();" type="button">보내기</button>
+		</div>
 	</div>
 </div>
