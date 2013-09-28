@@ -15,7 +15,6 @@
 <script src="../application/js/shape.js"></script>
 <script src="../application/js/canvas.js"></script>
 
-<link rel="Stylesheet" type="text/css" href="../application/js/figureButton.css" />
 <script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
 
 <!-- wColorPicker -->
@@ -39,7 +38,7 @@
 <script src="../application/js/bootstrap-2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
 
 <script>
-/*
+
 $(window).resize(function(){
 	pWidth = $(parent.mainViewFrame).width();
 	pHeight = $(parent.mainViewFrame).height();
@@ -48,22 +47,22 @@ $(window).resize(function(){
 	$("body").height(pHeight-30);
 
 	r = pWidth/640;
+	console.log(r);
 
 	//$("#mainCanvas").css("zoom", r);
 	//$("#gcanvas").css("zoom", r);
 });
-*/
+
 $(function(){
 	parent.setRoom();
 	parent.preLoad();
 
-	/*
 	pWidth = $(parent.mainViewFrame).width();
 	pHeight = $(parent.mainViewFrame).height();
 
 	$("body").width(pWidth);
 	$("body").height(pHeight-30);
-	*/
+	
 
 	var sx, sy, ex, ey;
 	var down_flag = 0;
@@ -888,7 +887,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<div id="btnGroup" style="min-width:640px;height:30px;background-color:#87CEEB;">
+	<div id="btnGroup" style="min-width:800px;height:30px;background-color:#87CEEB;">
 		<span><a type="button" class="btn" onclick="setShape('select');" style="position:absolute; top:1px; left:0px;"></a></span>
 		<span><a type="button" class="btndraw" style="position:absolute; top:0px; left:50px;"></a></span>
 		<span><a type="button" class="btnLine" onclick="setShape('line');" style="position:absolute; top:1px; left:100px;"></a></span>
@@ -1045,12 +1044,12 @@ $(function(){
 		</table>
 	</div>
 
-	<div style="padding-top:100px; padding-left:100px;">
+	<div>
 		<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;">
 			이 글이 보이시는 경우 브라우저가 캔버스 기능을 지원하지 않습니다.
 		</canvas>
 	</div>
-	<div style="padding-top:30px; padding-left:100px;">
+	<div>
 		<textarea id="inputArea" cols="88" rows="5"></textarea>
 	</div>
 </body>
