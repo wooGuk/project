@@ -9,7 +9,7 @@
       -webkit-font-smoothing: antialiased;
       font: normal 15px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
       background-color: #000000;
-      padding-top:70px;
+      padding-top:10px;
     }
 
     #slides {
@@ -176,7 +176,27 @@
       navigation : {
         active: true,
         effect:"slide"
+      },
+      callback : {
+        loaded: function(number){
+            $(".slidesjs-previous").hide();
+        },
+        complete: function(number){
+          if(number==1)
+            $(".slidesjs-previous").hide();
+          else
+            $(".slidesjs-previous").show();
+          if(number==<?=count($imageList)?>)
+            $(".slidesjs-next").hide();
+          else
+            $(".slidesjs-next").show();
+        }
       }
+    });
+    $("#exitBtn").click(function(){
+      $("#project_idx").val(project_idx);
+      $("#project_name").val(project_name);
+      $("#loadProject").submit();
     });
   });
 
@@ -185,6 +205,7 @@
 /*socket 연결*/
 var socket = io.connect("http://203.253.20.235:8005");
 var project_idx = "<?=$this->session->userdata('project_idx');?>";
+var project_name = "<?=$this->session->userdata('project_name');?>";
 
 socket.on('getSlide', function(data) {
   onSlide(data);
@@ -201,8 +222,8 @@ function setRoom(){
 
 </head>
 <body>
-
-<div class="container">
+<img id="exitBtn" src="application/js/common/images/slides_exit.png" style="float:right;padding-right:30px;"/>
+<div class="container" style="padding-top:60px;">
   <div id="slides">
   <?php
     if(isset($imageList)&&count($imageList)>0)
@@ -217,6 +238,10 @@ function setRoom(){
 ?> 
   </div>
 </div>
+<form id="loadProject" action="project" method="post">
+    <input type="hidden" id="project_idx" name="project_idx" />
+    <input type="hidden" id="project_name" name="project_name" />
+</form>
 
 </body>
 </html>
