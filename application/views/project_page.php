@@ -36,27 +36,20 @@
 $(window).resize(function(){
 	wWidth = $(window).width();
 	wHeight = $(window).height();
-	console.log(wHeight);
 
-	if(wHeight > 704){
-
-		if(wWidth > 979){
-			$("#leftTab").height(wHeight-40);
-			$("#rightTab").height(wHeight-40);
-			$("#mainViewFrame").height(wHeight-40);
-		}else{
-			$("#leftTab").height(wHeight-52);
-			$("#rightTab").height(wHeight-52);
-			$("#mainViewFrame").height(wHeight-50);
-		}
+	if(wWidth > 979){
+		$("#leftTab").height(wHeight-40);
+		$("#rightTab").height(wHeight-40);
+		$("#mainViewFrame").height(wHeight-40);
+	}else{
+		$("#leftTab").height(wHeight-52);
+		$("#rightTab").height(wHeight-52);
+		$("#mainViewFrame").height(wHeight-52);
 	}
 
 	$("#rightTab").width(wWidth-320);
-	if(wWidth >= 1008){
-		$("#mainViewFrame").width(wWidth-337);
-	}else{
-		$("#mainViewFrame").width(720);
-	}
+	$("#mainViewFrame").width(wWidth-320);
+	
 
 });
 
@@ -104,28 +97,18 @@ function preLoad(){
 	wWidth = $(window).width();
 	wHeight = $(window).height();
 
-	if(wHeight > 704){
-		if(wWidth > 979){
-			$("#leftTab").height(wHeight-40);
-			$("#rightTab").height(wHeight-40);
-			$("#mainViewFrame").height(wHeight-40);
-		}else{
-			$("#leftTab").height(wHeight-52);
-			$("#rightTab").height(wHeight-52);
-			$("#mainViewFrame").height(wHeight-52);
-		}
+	if(wWidth > 979){
+		$("#leftTab").height(wHeight-40);
+		$("#rightTab").height(wHeight-40);
+		$("#mainViewFrame").height(wHeight-40);
 	}else{
-		$("#leftTab").height(704);
-		$("#rightTab").height(704);
-		$("#mainViewFrame").height(704);
+		$("#leftTab").height(wHeight-52);
+		$("#rightTab").height(wHeight-52);
+		$("#mainViewFrame").height(wHeight-52);
 	}
 
 	$("#rightTab").width(wWidth-320);
-	if(wWidth >= 1008){
-		$("#mainViewFrame").width(wWidth-337);
-	}else{
-		$("#mainViewFrame").width(720);
-	}
+	$("#mainViewFrame").width(wWidth-320);
 
 	$("#mainViewFrame").load(function(){
 		//if(mainViewFrame.parentC==null){
@@ -337,7 +320,7 @@ function colorChange()
 		<div id="canvasView" style="text-align:center; padding:7px;"></div>
 		<div style="text-align:center; padding:7px; border:1px #ddd solid; width:280px; height:200px;" onclick="addCanvas();">+</div>
 	</div>
-	<div id="rightTab" style="float:left;overflow-x:scroll;">
+	<div id="rightTab" style="float:left;">
 		<iframe id="mainViewFrame" src="project/mainView" frameborder="0" scrolling="no" allowTransparency="false" style="background-color:#eee;"></iframe>
 	</div>
 

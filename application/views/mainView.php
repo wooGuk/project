@@ -6,6 +6,14 @@
 
 <style>
 	html, body { padding:0; margin:0; }
+	#mainCanvas, #inputArea { padding-left: 0;
+		padding-right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		vertical-align: center;
+	}
+	#mainCanvas { margin-top: auto; margin-bottom: auto; }
 </style>
 
 <link rel="Stylesheet" type="text/css" href="../application/js/figureButton.css" />
@@ -43,14 +51,15 @@ $(window).resize(function(){
 	pWidth = $(parent.mainViewFrame).width();
 	pHeight = $(parent.mainViewFrame).height();
 
-	$("body").width(pWidth);
-	$("body").height(pHeight-30);
+	$("#canvasDiv").width(pWidth-20);
+	$("#canvasDiv").height(pHeight-50);
 
-	r = pWidth/640;
-	console.log(r);
+	$("#canvasDivParent").width(pWidth);
+	$("#canvasDivParent").height(pHeight-30);
 
-	//$("#mainCanvas").css("zoom", r);
-	//$("#gcanvas").css("zoom", r);
+	var position = $("#mainCanvas").position();
+	$("#gcanvas").css("top", position.top);
+	$("#gcanvas").css("left", position.left);
 });
 
 $(function(){
@@ -60,8 +69,15 @@ $(function(){
 	pWidth = $(parent.mainViewFrame).width();
 	pHeight = $(parent.mainViewFrame).height();
 
-	$("body").width(pWidth);
-	$("body").height(pHeight-30);
+	$("#canvasDiv").width(pWidth-20);
+	$("#canvasDiv").height(pHeight-50);
+
+	$("#canvasDivParent").width(pWidth);
+	$("#canvasDivParent").height(pHeight-30);
+
+	var position = $("#mainCanvas").position();
+	$("#gcanvas").css("top", position.top);
+	$("#gcanvas").css("left", position.left);
 	
 
 	var sx, sy, ex, ey;
@@ -96,11 +112,6 @@ $(function(){
 	});
 
 	/*gs없애고 selList가 1일 때 gs로 draw*/
-	$(document).mousemove(function(e){
-		if(down_flag==1){
-
-		}
-	});
 
 	$("#mainCanvas").mousedown(function(e){
 		timer = setInterval(function(){intervalDraw();}, 20);
@@ -146,6 +157,7 @@ $(function(){
 						}
 					}
 				}
+				clear(mainC.gctx);
 			}else{
 				// move가 아닐 때는 selList비워줌.	
 				clearSelList();
@@ -390,7 +402,6 @@ $(function(){
 				getBoxFromparent(i);
 
 				updateBox(i);
-				//updateBox(i);
 			}
 		
 		}else{
@@ -405,7 +416,7 @@ $(function(){
 			newShape.ey = ey;
 			box = parentC.addShape(newShape, 0);
 
-			var canvasImgStr = mainC.toDataURL.toString();
+			var canvasImgStr = $("#canvas"+parent.socket.parentNum, parent.document).get(0).toDataURL().toString();
 
 			parent.socket.emit("addBox", {
 				box_idx : mainC.boxes.length-1
@@ -453,7 +464,6 @@ $(function(){
 					mainC.gs[i].fillColor = selectColor;
 					getBoxFromparent(i);
 					updateBox(i);
-					//updateBox(i);
 					intervalDraw();
 				}
 			}
@@ -474,7 +484,6 @@ $(function(){
 					mainC.gs[i].strokeColor = selectColor;
 					getBoxFromparent(i);
 					updateBox(i);
-					//updateBox(i);
 					intervalDraw();
 				}
 			}
@@ -553,7 +562,7 @@ function copyStyle(a, b){
 
 function updateBox(i){
 	var box = parentC.boxes[i];
-	var canvasImgStr = mainC.toDataURL.toString();
+	var canvasImgStr = $("#canvas"+parent.socket.parentNum, parent.document).get(0).toDataURL().toString();
 	parent.socket.emit("modifyBox", {
 		box_idx : i
 		, canvas_idx : parent.socket.parentNum
@@ -637,7 +646,6 @@ function clearSelList(){
 
 /* 후에 validation을 줄것인지? 의논해봅시다. 아직은 버벅거리지 않음. */
 function intervalDraw(){
-	console.log("draw");
 	clear(mainC.ctx);
 	mainC.draw();
 	clear(parentC.ctx);
@@ -825,7 +833,7 @@ $(document).keydown(function(e){
 					mainC.unSelect(i);
 					getBoxFromparent();
 
-					var canvasImgStr = mainC.toDataURL.toString();
+					var canvasImgStr = $("#canvas"+parent.socket.parentNum, parent.document).get(0).toDataURL().toString();
 
 					parent.socket.emit("delBox", {
 						box_idx : i
@@ -891,7 +899,7 @@ $(function(){
 		<span><a type="button" class="btn" onclick="setShape('select');" style="position:absolute; top:1px; left:0px;"></a></span>
 		<span><a type="button" class="btndraw" style="position:absolute; top:0px; left:50px;"></a></span>
 		<span><a type="button" class="btnLine" onclick="setShape('line');" style="position:absolute; top:1px; left:100px;"></a></span>
-		<span><a type="button" id="textButton" class="btnLine" onclick="setShape('text');">텍스트트트</a></span>
+		<span><a type="button" id="textButton" class="btnLine" onclick="setShape('text');"></a></span>
 		<span><img src="../application/js/img/brushtext.png" style="position:absolute; top:1px; left:150px; height:30px"/></span>
 		<input type="text" id="brush_size" value="1" style="position:absolute; top:2px; left:250px; width:50px; background-color:transparent;border:0.5 solid black;text-align:center;">
 		<span><img src="../application/js/img/alpha.png" style="position:absolute; top:0px; left:310px; height:30px"/></span>
@@ -1044,13 +1052,15 @@ $(function(){
 		</table>
 	</div>
 
-	<div>
-		<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;">
-			이 글이 보이시는 경우 브라우저가 캔버스 기능을 지원하지 않습니다.
-		</canvas>
+	<div id="canvasDivParent" style="overflow-x:scroll;overflow-y:scroll;">
+	<div id="canvasDiv" style="overflow-x:scroll;overflow-y:scroll;display:table;">
+		<div style="display:table-cell; text-align:center; vertical-align:middle;">
+			<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;">
+				이 글이 보이시는 경우 브라우저가 캔버스 기능을 지원하지 않습니다.
+			</canvas>
+			<textarea id="inputArea" cols="75" rows="5"></textarea>
+		</div>
 	</div>
-	<div>
-		<textarea id="inputArea" cols="88" rows="5"></textarea>
 	</div>
 </body>
 </html>

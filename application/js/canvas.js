@@ -63,6 +63,7 @@ canvas.prototype = {
 					break;
 				}
 			}
+			clear(this.gctx);
 		}else{
 			var mykeys = [];
 			for(mykeys[mykeys.length] in this.boxes);
