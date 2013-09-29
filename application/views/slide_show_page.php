@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="kor">
 <head>
 	<meta charset="utf-8">
@@ -163,8 +162,10 @@
   </style>
 <script src="application/js/common/jquery-2.0.2.min.js"></script>
 <script src="application/js/common/jquery.slides.min.js"></script>
+<script src="http://203.253.20.235:8005/socket.io/socket.io.js"></script>
 <script>
   $(function(){
+    setRoom();
     $("#slides").slidesjs({
       width: 640,
       height: 480,
@@ -175,19 +176,27 @@
       navigation : {
         active: true,
         effect:"slide"
-      },
-       play: {
-      active: true,
-      effect: "slide",
-      interval: 5000,
-      auto: true,
-      swap: true,
-      pauseOnHover: false,
-      restartDelay: 2500
-    }
-    });     
+      }
+    });
   });
 
+</script>
+<script>
+/*socket 연결*/
+var socket = io.connect("http://203.253.20.235:8005");
+var project_idx = "<?=$this->session->userdata('project_idx');?>";
+
+socket.on('getSlide', function(data) {
+  onSlide(data);
+});
+
+function onSlide(paging){
+    $("li:nth-child("+paging+") a").click();
+}
+
+function setRoom(){
+  socket.emit("setRoom", project_idx);
+}
 </script>
 
 </head>

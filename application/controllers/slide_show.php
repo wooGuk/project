@@ -28,10 +28,10 @@ class Slide_show extends CI_Controller {
 	}
 
 	public function get_slide_image($i=null){
-		$project_idx = $this->input->post('project_idx');
-		
+		$project_idx = $this->input->post('project_idx', true);
+
 		$qParam = new stdClass();
-		$qParam->project_idx =($i=='mobile') ? $project_idx : $this->session->userdata('project_idx');
+		$qParam->project_idx=($i=='mobile') ? $project_idx : $this->session->userdata('project_idx');
 
 		$result = $this->m_project->getCanvasImg($qParam);
 

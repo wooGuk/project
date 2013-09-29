@@ -39,8 +39,8 @@ function handler(req, res){
 io.sockets.on('connection', function(socket) {
 	this.roomNum = 0;
 
-	socket.on('echo1', function(data){
-		console.log(data);
+	socket.on('setSlide', function(data){
+		socket.broadcast.to(this.roomNum).emit("getSlide", data);
 	});
 
 	socket.on('setRoom', function(roomNum){
