@@ -2,8 +2,9 @@
 
 <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
 <style type="text/css">
-	#projectListTable tr { color:blue; }
-
+	#projectListTable { list-style-type: none; margin: 0; padding: 0; width:500px; }
+	#projectListTable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; cursor:pointer;}
+	#projectListTable li span { position: absolute; margin-left: -1.3em; }
 </style>
 <link href="application/js/bootstrap-2.3.2/docs/assets/css/bootstrap-responsive.css" type="text/css" rel="stylesheet"/>
 <link rel="stylesheet" href="application/js/common/jquery-ui.css" />
@@ -46,13 +47,23 @@ $(function(){
 		}
 	});
 
-	$("#projectListTable tr").click(function(){
+	$("#projectListTable li").click(function(){
 		if($(this).attr("id")=="showAddPJDiv"){
 			$("#addPJDiv").dialog("open");
 		}else{
 			loadProject($(this).attr("id"), $(this).attr("pjname"));
 		}
 	});
+
+	$("#projectListTable").sortable({
+		items: "li:not(.ui-state-disabled)",
+		activate: function(event, ui){
+			console.log(1);
+		}
+	});
+	$( "#projectListTable" ).disableSelection();
+
+
 });
 
 function loadProject(id, name){
@@ -62,7 +73,7 @@ function loadProject(id, name){
 }
 
 function addList(project_idx, project_name){
-	htmlStr = "<tr id='"+project_idx+"' pjname='"+project_name+"' onclick='loadProject("+project_idx+", "+'"'+project_name+'"'+")'><td>"+project_name+"</td></tr>";
+	htmlStr = "<li class='ui-state-default' id='"+project_idx+"' pjname='"+project_name+"' onclick='loadProject("+project_idx+", "+'"'+project_name+'"'+")'>"+project_name+"</li>";
 	$("#projectListTable").append(htmlStr);
 }
 
@@ -81,21 +92,22 @@ function addPJ(){
 }
 </script>
 
-	<table id="projectListTable" align="center">
-		<col width=200>
-		<tr id="showAddPJDiv"><td>+</td></tr>
+<div style="width:500px; margin-left:auto;margin-right:auto;">
+	<ul id="projectListTable" align="center">
+		<li id="showAddPJDiv" class="ui-state-disabled" style="cursor:pointer !important;">+ 새로운 프로젝트를 생성합니다.</li>
 <?php
 	if(isset($list)&&sizeof($list)>0)
 	{
 		foreach($list as $row)
 		{
 ?>
-		<tr id="<?=$row->project_idx;?>" pjname="<?=$row->project_name;?>"><td><?=$row->project_name;?></td></tr>
+		<li id="<?=$row->project_idx;?>" pjname="<?=$row->project_name;?>" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?=$row->project_name;?></li>
 <?php
 		}
 	}
 ?>
-	</table>
+	</ul>
+</div>
 
 	<div id="addPJDiv" title="프로젝트 생성">
 		프로젝트 이름 : <input type="text" id="addPJname" />
