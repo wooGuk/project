@@ -47,8 +47,9 @@ $(window).resize(function(){
 		$("#mainViewFrame").height(wHeight-52);
 	}
 
-	$("#rightTab").width(wWidth-320);
-	$("#mainViewFrame").width(wWidth-320);
+	$("#tabWrap").width(wWidth);
+	$("#rightTab").width(wWidth-$("#leftTab").width());
+	$("#mainViewFrame").width(wWidth-$("#leftTab").width());
 	
 
 });
@@ -107,8 +108,9 @@ function preLoad(){
 		$("#mainViewFrame").height(wHeight-52);
 	}
 
-	$("#rightTab").width(wWidth-320);
-	$("#mainViewFrame").width(wWidth-320);
+	$("#tabWrap").width(wWidth);
+	$("#rightTab").width(wWidth-$("#leftTab").width());
+	$("#mainViewFrame").width(wWidth-$("#leftTab").width());
 
 	$("#mainViewFrame").load(function(){
 		//if(mainViewFrame.parentC==null){
@@ -310,7 +312,7 @@ function colorChange()
 
 </script>
 
-<div style="overflow:hidden;">
+<div id="tabWrap" style="overflow:hidden;">
 	<div id="leftTab" style="width:320px;float:left;background-color:#B0E0E6;overflow-y:scroll;">
 		<div class="well sidebar-nav" style="height:30px; background-color:#E0FFFF;">
 			<ul class="nav nav-list">
@@ -320,7 +322,7 @@ function colorChange()
 		<div id="canvasView" style="text-align:center; padding:7px;"></div>
 		<div style="text-align:center; padding:7px; border:1px #ddd solid; width:280px; height:200px;" onclick="addCanvas();">+</div>
 	</div>
-	<div id="rightTab" style="float:left;">
+	<div id="rightTab" style="float:left;overflow:hidden;">
 		<iframe id="mainViewFrame" src="project/mainView" frameborder="0" scrolling="no" allowTransparency="false" style="background-color:#eee;"></iframe>
 	</div>
 
