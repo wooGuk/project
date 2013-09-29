@@ -166,6 +166,7 @@
 <script>
   $(function(){
     setRoom();
+    var curPage = 1;
     $("#slides").slidesjs({
       width: 640,
       height: 480,
@@ -182,6 +183,7 @@
             $(".slidesjs-previous").hide();
         },
         complete: function(number){
+          curPage = number;
           if(number==1)
             $(".slidesjs-previous").hide();
           else
@@ -189,7 +191,7 @@
           if(number==<?=count($imageList)?>)
             $(".slidesjs-next").hide();
           else
-            $(".slidesjs-next").show();
+            $(".slidesjs-next").show();        
         }
       }
     });
@@ -197,6 +199,25 @@
       $("#project_idx").val(project_idx);
       $("#project_name").val(project_name);
       $("#loadProject").submit();
+    });
+
+    $(document).keydown(function(e){
+        switch(e.keyCode){
+          case 37: // ←
+          case 40: // ↓
+            if(curPage>1)
+              curPage-=1;
+            onSlide(curPage);
+            break;
+          case 38: // ↑
+          case 39: // →
+            if(curPage < <?=count($imageList)?>)
+              curPage+=1;
+            onSlide(curPage);
+            break;
+          default:
+            break;
+        }
     });
   });
 
@@ -218,6 +239,7 @@ function onSlide(paging){
 function setRoom(){
   socket.emit("setRoom", project_idx);
 }
+
 </script>
 
 </head>
