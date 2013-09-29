@@ -34,6 +34,7 @@ class Project_list extends CI_Controller {
 
 	function get_project_list($i=null){
 		$user_idx = $this->input->post('user_idx', true);
+		$this->session->unset_userdata('project_idx');
 
 		$qParam = new stdClass();
 		$qParam->user_idx = ($i=='mobile') ? $user_idx : $this->session->userdata('user_idx');
@@ -74,7 +75,6 @@ class Project_list extends CI_Controller {
 
 		if($project_idx>0){
 			echo $project_idx;
-			return;
 		}else{
 			echo 'error';
 		}
@@ -111,9 +111,8 @@ class Project_list extends CI_Controller {
 		$invite_idx = $this->m_project->inviteProject($qParam);
 		if($invite_idx>0){
 			echo $invite_idx;
-			return;
 		}else{
-			echo 'error';
+			echo 'be_found';
 		}
 	}
 }

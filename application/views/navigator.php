@@ -33,9 +33,8 @@
 	</div>
 </div>
 
-
 <div id="invitePop" title="프로젝트 초대" style="display:none;">
-<?php 	if(!isset($this->session->project_idx))
+<?php 	if(!$this->session->userdata('project_idx'))
 		{
 ?>
 	<select id="inviteProjectIdx">
@@ -51,6 +50,10 @@
 			}
 ?>
 	</select><br>
+<?php
+		}else{
+?>
+	<input id="inviteProjectIdx" type="text" style="display:none;" value="<?=$this->session->userdata('project_idx')?>"/><br>
 <?php
 		}
 ?>
@@ -94,8 +97,10 @@ function invitePJ(){
 		, user_id : $("#inviteUserId").val()
 		, limit : $("#limitDate").val()
 	}, function(redata){
-		alert(redata);return;
-		if($("#"+redata).length==1){
+		if($.isNumeric(redata)&&redata>0){
+			alert("성공적으로 초대되었습니다.");
+			$("#invitePop").dialog("close");
+		}else if($("#"+redata).length==1){
 			if(redata=="inviteProjectIdx"){
 				alert("초대할 프로젝트를 생성해야합니다.");
 				$("#invitePop").dialog("close");
@@ -110,10 +115,9 @@ function invitePJ(){
 				return;
 			}
 		}else if(redata=="error"){
-			alert("에러가 발생하였습니다.");
-		}else{
-			alert("성공적으로 초대되었습니다.");
-			$("#invitePop").dialog("close");
+			alert("존재하지 않는 아이디입니다.");
+		}else if(redata=="be_found"){
+			alert("이미 초대되었습니다.");
 		}
 	});
 }

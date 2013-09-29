@@ -50,6 +50,15 @@ class M_project extends CI_Model {
 	}
 
 	function inviteProject($param){
+
+		$this->db->where('project_idx', $param->project_idx);
+		$this->db->where('receiver_idx', $param->receiver_idx);
+		$this->db->where('accept_flag', 0);
+		$query = $this->db->get('invite');
+		if($query->num_rows()>0){
+			return 0;
+		}
+
 		$this->db->set('sender_idx', $param->sender_idx);
 		$this->db->set('receiver_idx', $param->receiver_idx);
 		$this->db->set('project_idx', $param->project_idx);
@@ -57,6 +66,16 @@ class M_project extends CI_Model {
 		$this->db->set('due_date', date('Ymd', mktime(0,0,0,date('m'),date('d')+$param->limit,date('Y'))));
 		$this->db->insert('invite');
 		$invite_idx = $this->db->insert_id();
+
+		$this->db->where('project_idx', $param->project_idx);
+		$this->db->where('user_idx', $param->receiver_idx);
+		$query = $this->db->get('project_user');
+
+		if($query->num_rows()==0){
+			$this->db->set('project_idx', $param->project_idx);
+			$this->db->set('user_idx', $param->receiver_idx);
+			$this->db->insert('project_user');
+		}
 
 		return $invite_idx;
 	}
