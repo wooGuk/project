@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Logout extends CI_Controller {
+class M_user extends CI_Model {
 
 	/**
 	 * Index Page for this controller.
@@ -17,23 +17,25 @@ class Logout extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function __construct()
+	function __construct()
 	{
+		// Call the Model constructor
 		parent::__construct();
-		$this->load->model('m_logout');
 	}
 
-	public function index($i=null){
-		$this->session->sess_destroy();
-		if($i!='mobile'){
-			redirect('/login', 'refresh');
+	function getUserIdx($param){
+		if(isset($param->user_id)){
+			$this->db->where('user_id', $param->user_id);
+		}
+		$query = $this->db->get('user');
+
+		if($query->num_rows()==1){
+			return $query->row();
+		}else{
+			return false;
 		}
 	}
-/*
-	public function logoutLogic($i=null) {
-		$user_idx = $this->input->post('user_idx', true);		
-		$user_index = ($i=='mobile')? $user_idx : $this->session->userdata('user_idx');
-		$this->m_logout->logout($user_index, $i);
-	}
-*/
 }
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

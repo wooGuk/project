@@ -11,6 +11,7 @@
 
 
 <script src="application/js/common/jquery-2.0.2.min.js"></script>
+<script src="application/js/common/jquery-ui.min.js"></script>
 <script src="application/js/shapeList.js"></script>
 <script src="application/js/shape.js"></script>
 <script src="application/js/canvas.js"></script>

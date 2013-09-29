@@ -49,6 +49,18 @@ class M_project extends CI_Model {
 		return $project_idx;
 	}
 
+	function inviteProject($param){
+		$this->db->set('sender_idx', $param->sender_idx);
+		$this->db->set('receiver_idx', $param->receiver_idx);
+		$this->db->set('project_idx', $param->project_idx);
+		$this->db->set('invite_date', date("Ymd"));
+		$this->db->set('due_date', date('Ymd', mktime(0,0,0,date('m'),date('d')+$param->limit,date('Y'))));
+		$this->db->insert('invite');
+		$invite_idx = $this->db->insert_id();
+
+		return $invite_idx;
+	}
+
 	function getCanvas($param){
 		$this->db->where('project_idx', $param->project_idx);
 		$this->db->order_by('canvas_ord');

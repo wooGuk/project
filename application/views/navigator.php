@@ -25,7 +25,96 @@
 						<li class="active"><a href="/CI/slide_show">슬라이드쇼 보기</a></li>
 					</ul>
 				<?php endif;?>
+				<ul class="nav">
+					<li class="active"><a id="invite" style="cursor:pointer;">초대</a></li>
+				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
 </div>
+
+
+<div id="invitePop" title="프로젝트 초대" style="display:none;">
+<?php 	if(!isset($this->session->project_idx))
+		{
+?>
+	<select id="inviteProjectIdx">
+<?php
+			if(isset($list)&&sizeof($list)>0)
+			{
+				foreach($list as $row)
+				{
+?>
+				<option value="<?=$row->project_idx;?>"><?=$row->project_name;?></option>
+<?php
+				}
+			}
+?>
+	</select><br>
+<?php
+		}
+?>
+	초대할 아이디 : <input id="inviteUserId" type="text" style="display:inline; width:80px"/><br>
+	수락 가능 기간 : <input id="limitDate" type="text" style="display:inline; width:60px"/>일
+</div>
+
+<link rel="stylesheet" href="application/js/common/jquery-ui.css" />
+<script src="application/js/common/jquery-2.0.2.min.js"></script>
+<script src="application/js/common/jquery-ui.min.js"></script>
+<script>
+$(function(){
+	$("#invitePop").dialog({
+		autoOpen : false,
+		show: { effect: "blind", duration: 500 },
+		hide: { effect: "blind", duration: 500 },
+		resizable: false,
+		height:200,
+		modal: true,
+		buttons: {
+			"초대": function() {
+				invitePJ();
+			},
+			"취소": function() {
+				$(this).dialog("close");
+			}
+		},
+		close : function(){
+			$("#invite_user_id").val("");
+		}
+	});
+
+	$("#invite").click(function(){
+		$("#invitePop").dialog("open");
+	});
+});
+
+function invitePJ(){
+	$.post("project_list/invite_project/", {
+		project_idx : $("#inviteProjectIdx").val()
+		, user_id : $("#inviteUserId").val()
+		, limit : $("#limitDate").val()
+	}, function(redata){
+		alert(redata);return;
+		if($("#"+redata).length==1){
+			if(redata=="inviteProjectIdx"){
+				alert("초대할 프로젝트를 생성해야합니다.");
+				$("#invitePop").dialog("close");
+				return;
+			}else if(redata=="inviteUserId"){
+				alert("초대할 사람의 ID를 입력해주세요.");
+				$("#inviteUserId").focus();
+				return;
+			}else if(redata=="limitDate"){
+				alert("수락 가능 기간을 입력해주세요.");
+				$("#limitDate").focus();
+				return;
+			}
+		}else if(redata=="error"){
+			alert("에러가 발생하였습니다.");
+		}else{
+			alert("성공적으로 초대되었습니다.");
+			$("#invitePop").dialog("close");
+		}
+	});
+}
+</script>

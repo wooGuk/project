@@ -50,16 +50,20 @@ $(function(){
 		if($(this).attr("id")=="showAddPJDiv"){
 			$("#addPJDiv").dialog("open");
 		}else{
-			$("#project_idx").val($(this).attr("id"));
-			$("#project_name").val($(this).attr("pjname"));
-			$("#loadProject").submit();
+			loadProject($(this).attr("id"), $(this).attr("pjname"));
 		}
 	});
 });
 
+function loadProject(id, name){
+	$("#project_idx").val(id);
+	$("#project_name").val(name);
+	$("#loadProject").submit();
+}
+
 function addList(project_idx, project_name){
-	htmlStr = "<tr id='"+project_idx+"'><td>"+project_name+"</td></tr>";
-	$("#showAddPJDiv").after(htmlStr);
+	htmlStr = "<tr id='"+project_idx+"' pjname='"+project_name+"' onclick='loadProject("+project_idx+", "+'"'+project_name+'"'+")'><td>"+project_name+"</td></tr>";
+	$("#projectListTable").append(htmlStr);
 }
 
 function addPJ(){

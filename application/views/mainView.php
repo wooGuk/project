@@ -1070,7 +1070,7 @@ $(function(){
 			<canvas id="mainCanvas" width="640" height="480" style="background-color:#fff; zoom:1;">
 				이 글이 보이시는 경우 브라우저가 캔버스 기능을 지원하지 않습니다.
 			</canvas>
-			<textarea id="inputArea" cols="75" rows="5"></textarea>
+			<textarea id="inputArea" cols="50" rows="5" style="display:none;position:absolute;top:35px;left:5px;"></textarea>
 		</div>
 	</div>
 	</div>

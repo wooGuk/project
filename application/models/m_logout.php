@@ -23,11 +23,15 @@ class M_logout extends CI_Model {
 		parent::__construct();
 	}
 
-	function logout($param){
+	function logout($param, $i=null){
 		$this->session->delete($param);
 		$this->session->session_destroy();
 		$this->cookie->delete($param);
 		$this->cookie->destroy();
-		redirect('login');
+
+		if($i=='mobile')
+			echo 'success';
+		else
+			redirect('login');
 	}
 }

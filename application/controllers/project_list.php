@@ -21,6 +21,7 @@ class Project_list extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_project');
+		$this->load->model('m_user');
 		// 생성자 코드에 기능추가
 	}
 
@@ -49,7 +50,7 @@ class Project_list extends CI_Controller {
 		$param = new stdClass();
 		$param->list = json_decode($result);
 
-		$nav_param = new stdClass();
+		$nav_param = $param;
 		$nav_param->name = "프로젝트";
 		$nav_param->user_name = $this->session->userdata('user_name');
 		
@@ -72,7 +73,45 @@ class Project_list extends CI_Controller {
 		$project_idx = $this->m_project->addProject($qParam);
 
 		if($project_idx>0){
-			return $project_idx;
+			echo $project_idx;
+			return;
+		}else{
+			echo 'error';
+		}
+	}
+
+	function invite_project(){
+		$project_idx = $this->input->post('project_idx', true);
+		$user_id = $this->input->post('user_id', true);
+		$limit = $this->input->post('limit', true);
+
+		if($project_idx==null){
+			echo 'inviteProjectIdx'; return false;
+		}
+		if($user_id==null){
+			echo 'inviteUserId'; return false;
+		}
+		if($limit==null){
+			echo 'limitDate'; return false;
+		}
+
+		$qParam = new stdClass();
+		$qParam->user_id = $user_id;
+		$user = $this->m_user->getUserIdx($qParam);
+
+		if($user==false){
+			echo 'error'; return false;
+		}
+
+		$qParam = new stdClass();
+		$qParam->project_idx = $project_idx;
+		$qParam->receiver_idx = $user->user_idx;
+		$qParam->sender_idx = $this->session->userdata('user_idx');
+		$qParam->limit = $limit;
+		$invite_idx = $this->m_project->inviteProject($qParam);
+		if($invite_idx>0){
+			echo $invite_idx;
+			return;
 		}else{
 			echo 'error';
 		}
