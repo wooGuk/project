@@ -258,8 +258,11 @@ $(function(){
 			mainC.gs[i] = mainC.addShape(mainC.gs[i], 1);
 			copyStyle(mainC.gs[i], mainC.boxes[i]);
 		}
-    }
+	}
+
 	$("#mainCanvas").mousemove(function(e){
+		ex = e.offsetX;
+		ey = e.offsetY;
 		if(shapeName=="select"){
 			if(resize_flag==1){
 				
@@ -382,9 +385,9 @@ $(function(){
 		}
 	});
 
-	$("#mainCanvas").mouseup(function(e){
-		ex = e.offsetX;
-		ey = e.offsetY;
+	function mouseUp(){
+		//ex = e.offsetX;
+		//ey = e.offsetY;
 		down_flag = 0;
 		resize_flag = 0;
 		resize_box = -1;
@@ -418,11 +421,10 @@ $(function(){
 
 			var canvasImgStr = $("#canvas"+parent.socket.parentNum, parent.document).get(0).toDataURL().toString();
 
-			parent.socket.emit("addBox", {
+			parent.socket.emit("addBox", { box : {
 				box_idx : mainC.boxes.length-1
 				, canvas_idx : parent.socket.parentNum
 				, project_idx : parent.project_idx
-				, canvas_img : canvasImgStr
 				, box_name : box.name
 				, box_x : box.x
 				, box_y : box.y
@@ -438,7 +440,7 @@ $(function(){
 				, box_line_width : box.lineWidth
 				, box_line_cap : box.lineCap
 				, box_text_value : box.textValue.join("|")
-			});
+			}, canvas_img : canvasImgStr });
 
 			mainC.select($(mainC.boxes).length-1);
 			getBoxFromparent(-1);
@@ -448,6 +450,16 @@ $(function(){
 		clearInterval(timer);
 		intervalDraw();
 		console.log(2);
+	}
+
+	$(document).mouseup(function(e){
+		if(down_flag==1){
+			mouseUp();
+		}
+	});
+
+	$("#mainCanvas").mouseup(function(e){
+		mouseUp();
 	});
 	
 	$("#fillColorPicker").wColorPicker({
