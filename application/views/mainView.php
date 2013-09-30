@@ -81,6 +81,7 @@ $(function(){
 	
 
 	var sx, sy, ex, ey;
+	var add_box_index = 0;
 	var down_flag = 0;
 	var resize_flag = 0;
 	var resize_box = -1;
@@ -173,8 +174,33 @@ $(function(){
 			newShape.ex = sx;
 			newShape.ey = sy;
 			tempS = mainC.addShape(newShape, 1);
-			tempS = mainC.addShape(newShape, 0); // 사라질 임시 도형
-			mainC.gs[mainC.boxes.length-1] = tempS;
+			tempS = mainC.addShape(newShape, 0); // 임시 도형을 그린다.
+			tempS = parentC.addShape(newShape, 0); // 임시 도형을 그린다.
+
+			add_box_index = mainC.boxes.length-1;
+			mainC.gs[add_box_index] = tempS;
+			box = tempS;
+			// 여기다 추가하고!! 2013-09-30
+			parent.socket.emit("addBox", {
+				box_idx : add_box_index
+				, canvas_idx : parent.socket.parentNum
+				, project_idx : parent.project_idx
+				, box_name : box.name
+				, box_x : box.x
+				, box_y : box.y
+				, box_w : box.w
+				, box_h : box.h
+				, box_sx : box.sx
+				, box_sy : box.sy
+				, box_ex : box.ex
+				, box_ey : box.ey
+				, box_alpha : box.alpha
+				, box_fill_color : box.fillColor
+				, box_stroke_color : box.strokeColor
+				, box_line_width : box.lineWidth
+				, box_line_cap : box.lineCap
+				, box_text_value : box.textValue.join("|")
+			});
 		}
 	});
 
@@ -380,7 +406,7 @@ $(function(){
 				newShape.ex = e.offsetX;
 				newShape.ey = e.offsetY;
 				tempS = mainC.addShape(newShape, 1);
-				mainC.gs[mainC.boxes.length-1] = tempS;
+				mainC.gs[add_box_index] = tempS;
 			}
 		}
 	});
@@ -417,32 +443,12 @@ $(function(){
 			newShape.sy = sy;
 			newShape.ex = ex;
 			newShape.ey = ey;
-			box = parentC.addShape(newShape, 0);
+			box = mainC.addShape(newShape, 1);
+			copyPosition(parentC.boxes[add_box_index], box);
 
-			var canvasImgStr = $("#canvas"+parent.socket.parentNum, parent.document).get(0).toDataURL().toString();
+			updateBox(add_box_index);
 
-			parent.socket.emit("addBox", { box : {
-				box_idx : mainC.boxes.length-1
-				, canvas_idx : parent.socket.parentNum
-				, project_idx : parent.project_idx
-				, box_name : box.name
-				, box_x : box.x
-				, box_y : box.y
-				, box_w : box.w
-				, box_h : box.h
-				, box_sx : box.sx
-				, box_sy : box.sy
-				, box_ex : box.ex
-				, box_ey : box.ey
-				, box_alpha : box.alpha
-				, box_fill_color : box.fillColor
-				, box_stroke_color : box.strokeColor
-				, box_line_width : box.lineWidth
-				, box_line_cap : box.lineCap
-				, box_text_value : box.textValue.join("|")
-			}, canvas_img : canvasImgStr });
-
-			mainC.select($(mainC.boxes).length-1);
+			mainC.select(add_box_index);
 			getBoxFromparent(-1);
 			shapeName = "select";
 		}

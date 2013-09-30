@@ -87,18 +87,20 @@ io.sockets.on('connection', function(socket) {
 	});
 
 	socket.on('addBox', function(data){
-		conn.query('insert into box set ?', data.box, function(err, res, field){
+		conn.query('insert into box set ?', data, function(err, res, field){
 			if(err){
 				console.log("추가 에러 발생."+err); return;
 			}
 		});
+		socket.broadcast.to(this.roomNum).emit("addBoxToParent", data);
 
+		/*
 		conn.query('update canvas set canvas_img = ? where canvas_idx = ? and project_idx = ?', [data.canvas_img, data.box.canvas_idx, data.box.project_idx], function(err, res, field){
 			if(err){
 				console.log("업뎃 에러 발생"); return;
 			}
 		});
-		socket.broadcast.to(this.roomNum).emit("addBoxToParent", data);
+		*/
 	});
 
 	socket.on('delBox', function(data){

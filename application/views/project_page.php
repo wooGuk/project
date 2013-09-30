@@ -199,6 +199,7 @@ socket.on("addBoxToParent", function (data) {
 	if(tempC.boxes.length!=data.box_idx){
 		return;
 	}
+	console.log("tempC : "+tempC.boxes.length);
 
 	var tempS = new shape();
 	tempS.name = data.box_name;

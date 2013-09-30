@@ -47,7 +47,7 @@
 <div class="container">
 	 <h2 class="form-signin-heading">Login Page</h2>
 	 <input type="text" id="email" placeholder="이메일주소"/>
-	 <input type="text" id="passwd" placeholder="비밀번호"/>
+	 <input type="password" id="passwd" placeholder="비밀번호"/>
 	 <button id="login" class="btn btn-large btn-primary">로그인</button>
 </div>
 
