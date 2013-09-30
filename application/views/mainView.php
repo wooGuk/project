@@ -166,6 +166,8 @@ $(function(){
 
 		}else{
 			clearSelList();
+			parentC.sColor = mainC.sColor;
+			parentC.fColor = mainC.fColor;
 
 			newShape = new shape();
 			newShape.name = shapeName;
@@ -173,13 +175,19 @@ $(function(){
 			newShape.sy = sy;
 			newShape.ex = sx;
 			newShape.ey = sy;
-			tempS = mainC.addShape(newShape, 1);
-			tempS = mainC.addShape(newShape, 0); // 임시 도형을 그린다.
-			tempS = parentC.addShape(newShape, 0); // 임시 도형을 그린다.
-
+			box = mainC.addShape(newShape, 0); // 임시 도형을 그린다.
+			box = parentC.addShape(newShape, 0); // 임시 도형을 그린다.
 			add_box_index = mainC.boxes.length-1;
+
+			newGShape = new shape();
+			newGShape.name = shapeName;
+			newGShape.sx = sx;
+			newGShape.sy = sy;
+			newGShape.ex = sx;
+			newGShape.ey = sy;
+			tempS = mainC.addShape(newGShape, 1);
 			mainC.gs[add_box_index] = tempS;
-			box = tempS;
+
 			// 여기다 추가하고!! 2013-09-30
 			parent.socket.emit("addBox", {
 				box_idx : add_box_index
@@ -434,8 +442,6 @@ $(function(){
 			}
 		
 		}else{
-			parentC.sColor = mainC.sColor;
-			parentC.fColor = mainC.fColor;
 
 			newShape = new shape();
 			newShape.name = shapeName;
@@ -443,13 +449,14 @@ $(function(){
 			newShape.sy = sy;
 			newShape.ex = ex;
 			newShape.ey = ey;
+
 			box = mainC.addShape(newShape, 1);
 			copyPosition(parentC.boxes[add_box_index], box);
 
 			updateBox(add_box_index);
 
 			mainC.select(add_box_index);
-			getBoxFromparent(-1);
+			getBoxFromparent(add_box_index);
 			shapeName = "select";
 		}
 
